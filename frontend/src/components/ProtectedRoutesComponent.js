@@ -1,5 +1,6 @@
 import React from 'react'
 import {Outlet, Navigate} from "react-router-dom"
+import UserChatComponent from './user/UserChatComponent';
 
 // This component will check if user is loged in or not
 // outlet will lead us everychild routes under ProtectedRouteComponent
@@ -10,17 +11,17 @@ function ProtectedRouteComponent({admin}) {
   
     if (admin){
     let adminAuth =true;
-    adminAuth? auth=true : auth=false
+   
+    return adminAuth? <Outlet/> : <Navigate to="/login"/>;
     }else{
     let userAuth =true;
-    userAuth? auth=true : auth=false
+   
+    return userAuth? <> <Outlet/> <UserChatComponent/></> : <Navigate to="/login"/>
     }
 
-  return (
-    <div>
-      {auth? <Outlet/> : <Navigate to="/login" />}
-    </div>
-  )
+ 
+    
+  
 }
 
 export default ProtectedRouteComponent
