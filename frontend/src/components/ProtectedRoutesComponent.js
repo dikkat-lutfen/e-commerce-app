@@ -7,7 +7,7 @@ import UserChatComponent from './user/UserChatComponent';
 // Navigate send us even we do not press any where
 
 function ProtectedRouteComponent({admin}) {
-    let auth = false;
+ 
   
     if (admin){
     let adminAuth =true;
