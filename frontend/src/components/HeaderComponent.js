@@ -1,44 +1,95 @@
 import React from "react";
-import { Container, InputGroup } from "react-bootstrap";
-import { Nav } from "react-bootstrap";
-import { Navbar } from "react-bootstrap";
-import { NavDropdown, Badge, Form, Dropdown, DropdownButton, Button} from "react-bootstrap";
+import {
+  Container,
+  InputGroup,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Badge,
+  Form,
+  Dropdown,
+  DropdownButton,
+  Button,
+} from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 
 function HeaderComponent() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand href="/">HERE IS WHAT YOU NEED</Navbar.Brand>
+        </LinkContainer>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <InputGroup>
-            <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </DropdownButton>
-            <Form.Control type="text" placeholder="Normal text" />
-            <Button variant="primary">Primary</Button>{' '}
+              <DropdownButton id="dropdown-basic-button" title="All Categories">
+                <Dropdown.Item>Phones</Dropdown.Item>
+                <Dropdown.Item>Televisions</Dropdown.Item>
+                <Dropdown.Item>Computers</Dropdown.Item>
+              </DropdownButton>
+              <Form.Control type="text" placeholder="Search item" />
+              <Button variant="primary">
+                <i className="bi bi-search"></i>
+              </Button>{" "}
             </InputGroup>
-            </Nav>
-            <Nav>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <Nav.Link href="#pricing">
-              <Badge bg="danger">2</Badge> CART
-            </Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+          </Nav>
+          <Nav>
+            <LinkContainer to="/admin/orders">
+              <Nav.Link>
+                Admin
+                <span className="position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
+              </Nav.Link>
+            </LinkContainer>
+
+           
+             
+           
+            <NavDropdown title="Halim Boushada" id="collasible-nav-dropdown">
+              {/*  <NavDropdown.Item eventKey="/user/my-orders"  as={Link} to="/user/my-orders">My orders</NavDropdown.Item> */}
+
+              <NavDropdown.Item>
+                <Link
+                  eventKey="/user/my-orders"
+                  to="/user/my-orders"
+                  className="text-decoration-none link-dark  "
+                >
+                  My orders
+                </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+
+              <NavDropdown.Item>
+                <Link
+                  eventKey="/user"
+                  to="/user"
+                  className="text-decoration-none link-dark  "
+                >
+                  My Profile
+                </Link>
               </NavDropdown.Item>
+
+              <NavDropdown.Item>Logout</NavDropdown.Item>
             </NavDropdown>
+
+            <LinkContainer to="/login">
+              <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to="/register">
+              <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to="/cart">
+              <Nav.Link> 
+                <Badge bg="danger">2</Badge> 
+                <i className="bi bi-cart-plus"></i>
+                 <span className="ms-1">CART</span>
+              </Nav.Link>
+            </LinkContainer>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
