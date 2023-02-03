@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 function HeaderComponent() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
+      <Container className="py-2">
         <LinkContainer to="/">
           <Navbar.Brand href="/">HERE IS WHAT YOU NEED</Navbar.Brand>
         </LinkContainer>
