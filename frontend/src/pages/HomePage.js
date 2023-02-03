@@ -1,4 +1,5 @@
 import React from 'react'
+import CategoryCardComponent from '../components/user/CategoryCardComponent';
 import ProductCarouselComponent from '../components/user/ProductCarouselComponent';
 
 
@@ -6,7 +7,8 @@ import ProductCarouselComponent from '../components/user/ProductCarouselComponen
   return (
     <div>
       <ProductCarouselComponent/>
-      <h1>Home page</h1>
+      <CategoryCardComponent/>
+     
     </div>
   )
 }

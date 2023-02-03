@@ -8,7 +8,7 @@ function ProductCarouselComponent() {
       <Carousel.Item>
         <img
           className=" d-inline-block w-100 carouselImg"
-          src="/images/laptop2.webp"
+          src="/images/laptop1.jpeg"
           alt="First slide"
         />
         <Carousel.Caption>
