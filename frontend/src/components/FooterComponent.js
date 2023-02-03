@@ -1,11 +1,15 @@
 import React from 'react'
+import { Container,Row, Col } from 'react-bootstrap'
 
 function FooterComponent() {
   return (
-    <div>
-      <h3>This is a footer</h3>
-    </div>
-  )
+  <Container fluid>
+      <Row>
+        <Col className="text-light   bg-dark"  >Copyright &copy ; By Muhammed Hakan</Col>
+      </Row>
+    </Container>
+
+   )
 }
 
 export default FooterComponent
