@@ -7,10 +7,14 @@ const apiRoutes = require("./routes/apiRoutes")
 
 app.get('/', (req, res) => {
  /*  res.send('Hello World! ') */
+/*  const Product = require("./models/ProductModel")
+ try{
+    Product.name =
+ }catch(er){
+
+ } */
  res.json({message:"API running ..."})
 })
-
-//mongoDB connection 
 
 app.use('/api', apiRoutes)
    
@@ -27,7 +31,7 @@ app.use((error,req,res,next)=>{
   
 const start = async () => {
     try {
-      await connectDB();
+      await connectionDB();
       app.listen(port, () =>
         console.log(`Server is listening on port ${port}...`)
       );
@@ -35,8 +39,6 @@ const start = async () => {
       console.log(error);
     }
   };
+
 start();
 
-/* app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-}) */
