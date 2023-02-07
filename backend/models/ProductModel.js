@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ReviewModel = require("./ReviewModel")
+const Review = require("./ReviewModel")
 
 const imageSchema =new mongoose.Schema({
     path: { type: String, required: true}
@@ -17,10 +17,7 @@ const productSchema = new mongoose.Schema({
         required: true
 
     },
-    category : {
-        type: String,
-        required: true
-    },
+    
     count:{
         type: Number,
         required: true
@@ -29,6 +26,12 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    category : {
+        type: String,
+        required: true
+    },
+    images: [imageSchema],
+    
     rating: {
         type: Number,
     }, 
@@ -36,25 +39,32 @@ const productSchema = new mongoose.Schema({
         type: Number,
 
     },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: Review,
+        }
+    ],
+   
+    attrs : [{key:{type: String}, value:{ type:String} }],
     sales:{
         type: Number,
         default: 0,
     },
-    arttrs : [{key:{type: String}, value:{ type:String} }],
-    images: [imageSchema],
-    reviews: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: ReviewModel
-        }
-    ],
+    
+    
 },{
      timestamps:true,
 })
 
-productSchema.index({name: "text", description : "text"},7name: "TextIndex");
+productSchema.index({name: "text", description : "text"}, {name: "TextIndex"});
 productSchema.index({"attrs.key":1,"attrs.value":1})
 
 const ProductModel = mongoose.model("products",productSchema)
-module.export=ProductModel;
+
+
+
+
+
+module.exports=ProductModel;
 

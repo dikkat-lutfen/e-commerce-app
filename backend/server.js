@@ -5,6 +5,8 @@ const connectionDB =require ("./config/db.js")
 
 const apiRoutes = require("./routes/apiRoutes")
 
+app.use(express.json())
+
 app.get('/', (req, res,next) => {
 
  res.json({message:"API running ..."})
