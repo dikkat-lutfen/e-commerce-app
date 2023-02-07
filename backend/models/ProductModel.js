@@ -1,18 +1,60 @@
 const mongoose = require("mongoose");
+const ReviewModel = require("./ReviewModel")
+
+const imageSchema =new mongoose.Schema({
+    path: { type: String, required: true}
+})
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
+        required:true,
+        unique: true
 
-    }
+    },
+    description :{
+        type: String,
+        required: true
+
+    },
+    category : {
+        type: String,
+        required: true
+    },
+    count:{
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    rating: {
+        type: Number,
+    }, 
+    reviewsNumber :{
+        type: Number,
+
+    },
+    sales:{
+        type: Number,
+        default: 0,
+    },
+    arttrs : [{key:{type: String}, value:{ type:String} }],
+    images: [imageSchema],
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: ReviewModel
+        }
+    ],
+},{
+     timestamps:true,
 })
 
-const ProductModel = mongoose.model("product",productSchema)
+productSchema.index({name: "text", description : "text"},7name: "TextIndex");
+productSchema.index({"attrs.key":1,"attrs.value":1})
+
+const ProductModel = mongoose.model("products",productSchema)
 module.export=ProductModel;
 
-/* const userSchema = new mongoose.Schema({
-    name: {      type: String,      require: true,    },
-    email: {      type: String,      require: true,    },
-    password: {      type: String,      require: true,    },  });
-    const userModel = mongoose.model('Users', userSchema);
-    module.exports = userModel;
- */

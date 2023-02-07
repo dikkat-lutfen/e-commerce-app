@@ -5,14 +5,8 @@ const connectionDB =require ("./config/db.js")
 
 const apiRoutes = require("./routes/apiRoutes")
 
-app.get('/', (req, res) => {
- /*  res.send('Hello World! ') */
-/*  const Product = require("./models/ProductModel")
- try{
-    Product.name =
- }catch(er){
+app.get('/', (req, res,next) => {
 
- } */
  res.json({message:"API running ..."})
 })
 
