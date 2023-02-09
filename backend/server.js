@@ -14,14 +14,19 @@ app.get('/', (req, res,next) => {
 
 app.use('/api', apiRoutes)
    
-app.use((error,req,res,next)=>{
+/* app.use((error,req,res,next)=>{
     console.error(error);
     next(error)
-})
+}) */
 
-app.use((error,req,res,next)=>{
+/* app.use((error,req,res,next)=>{
    message: error.message
    stack: error.stack
+}) */
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
 })
   
   
