@@ -25,9 +25,54 @@ const getProducts = async (req, res, next) => {
         
     }
 
+    let categoryQueryCondition = {}
+
+    const categoryName = req.params.categoryName || ""
+
+    
+    if(categoryName){
+    queryCondition=true
+    let a= categoryName.replaceAll(",","/")
+    let regEx = new RegExp("^"+a)
+    categoryQueryCondition={category:regEx}
+
+    }
+
+    if (req.query.category){
+        queryCondition=true
+        let a=  req.query.category.split(",").map((item)=>{
+            if (item) return new RegExp("^"+item)
+        
+        })
+        categoryQueryCondition={
+            category:{ $in: a }
+        }
+    }
+
+    let attrsQueryCondition =[]
+    if(req.query.attrs){
+        // attrs= RAM-1TB-2TB-4TB,color-blue-red
+        // ['RAM-1TB-2TB-4TB','color-blue-red','']
+        attrsQueryCondition =  req.query.attrs.split(",").reduce((acc,item)=>{
+            if(item){
+                let a = item.split("-")
+                let values = [...a]
+                values.shift()// remove first item because it is key for attributes
+                let a1 = {
+                    attrs : { $elemMatch :{ key:a[0], value:{ $in:values}}}
+                }
+                acc.push(a1)
+             /*   //console.dir(acc,{ depth: null})  */
+                return acc
+            }else return acc
+        },[])
+        queryCondition=true;
+    }
+
+
     if(queryCondition){
         query={
-            $and: [priceQueryCondition, ratingQueryCondition]
+            $and: [priceQueryCondition, ratingQueryCondition, categoryQueryCondition, ...attrsQueryCondition]
         }
     
     }
