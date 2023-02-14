@@ -1,6 +1,8 @@
 
 const ObjectId = require("mongodb").ObjectId
 
+  let hour;
+  let subtotal;
 const orders = Array.from({length: 22}).map((_,idx)=>{
     let day= 20
     if(idx<10){
@@ -17,7 +19,7 @@ const orders = Array.from({length: 22}).map((_,idx)=>{
         user: ObjectId(),
         OderTotal:{
             itemsCount:3,
-            cartSubtotal :subtotal
+            cartSubtotal:subtotal
         }, 
         cartItems : [ 
           {  name: "Product name",

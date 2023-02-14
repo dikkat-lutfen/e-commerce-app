@@ -24,8 +24,8 @@ const importData = async () => {
          await Category.collection.deleteMany({}) 
          await Product.collection.deleteMany({})  
          await Review.collection.deleteMany({})
-         await User.collection.deleteMany({})
-         await Order.collection.deleteMany({})
+         /*await User.collection.deleteMany({})*/
+         /*await Order.collection.deleteMany({})*/
 
 
         await Category.insertMany(categoryData) 
@@ -39,7 +39,7 @@ const importData = async () => {
         })
         await Product.insertMany(sampleProducts) 
         await User.insertMany(userData) 
-        await Order.insertMany(orderData) 
+        /*await Order.insertMany(orderData) */
         
  
         console.log("Seeder data proceeded successfully")
