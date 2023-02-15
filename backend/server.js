@@ -6,15 +6,17 @@ const port = 5000
 const connectionDB =require ("./config/db.js")
 
 const apiRoutes = require("./routes/apiRoutes")
+const cors = require('cors')
 
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
-
+app.use(cors())
 app.get('/', (req, res,next) => {
 
  res.json({message:"API running ..."})
 })
+
 
 app.use('/api', apiRoutes)
    

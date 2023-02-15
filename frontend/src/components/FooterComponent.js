@@ -3,15 +3,16 @@ import { Container,Row, Col } from 'react-bootstrap'
 
 function FooterComponent() {
   return (
-  <footer>
-    <Container fluid>
-      <Row className='mt-5'>
-        <Col className="text-light bg-dark text-center py-1"  >Copyright &copy ; By Muhammed Hakan</Col>
-      </Row>
-    </Container>
-  </footer>
-
-   )
+    <footer>
+      <Container fluid>
+        <Row className="mt-5">
+          <Col className="bg-dark text-white text-center py-5">
+            Copyright &copy; Muhammed Hakan SANON
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
 }
 
 export default FooterComponent

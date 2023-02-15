@@ -14,6 +14,7 @@ const getUsers = async (req, res, next) => {
 const registerUser = async (req, res, next) => {
   try {
     const { name, lastName, email, password } = req.body;
+    console.log("registerda gonderilenler :" + req.body)
     if (!(name && lastName && email && password)) {
       return res.status(400).send("all inputs are required");
     }
