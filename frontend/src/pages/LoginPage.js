@@ -11,9 +11,13 @@ import {
 import Spinner from "react-bootstrap/Spinner";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+
+
 
 function LoginPage() {
-  const [validated, setValidated] = useState(false);
+ /*  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -23,14 +27,34 @@ function LoginPage() {
     }
 
     setValidated(true);
-  };
+  }; */
+
+  const [email, setEmail]= useState("") ;
+  const [password, setPassword]= useState("");
+  const navigate = useNavigate(); 
+
+function login (){
+  axios.post(`http://localhost:5000/api/users/login`,{email:email,password:password})
+  .then(({data})=>{
+    console.log(data)
+    if(data){
+            navigate("/")
+    }else{
+      Alert("not registered")
+    }
+  })
+}
+
+
+
+
 
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={6}>
           <h1>Login</h1>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form /* noValidate validated={validated} onSubmit={handleSubmit} */>
             <Form.Group md="4" className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
@@ -39,6 +63,7 @@ function LoginPage() {
                 placeholder="Enter your email"
                 defaultValue=""
                 name="email"
+                onChange={(e)=>{setEmail(e.target.value)}}
               />
               {/*  <Form.Control.Feedback type="invalid    >Please enter valid email address!</Form.Control.Feedback> */}
             </Form.Group>
@@ -50,6 +75,7 @@ function LoginPage() {
                 placeholder="Enter your password"
                 defaultValue=""
                 name="password"
+                onChange={(e)=>{setPassword(e.target.value)}}
               />
             </Form.Group>
 
@@ -68,7 +94,7 @@ function LoginPage() {
               </Col>
             </Row>
 
-            <Button variant="primary" type="submit">
+            <Button /* variant="primary" type="submit" */ onClick={()=>login()}  >
               <Spinner
                 as="span"
                 animation="border"
