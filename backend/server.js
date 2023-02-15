@@ -1,5 +1,6 @@
 const express = require('express')
 const fileUpload = require("express-fileupload")
+const  cookieParser = require("cookie-parser")
 const app = express()
 const port = 5000
 const connectionDB =require ("./config/db.js")
@@ -7,6 +8,7 @@ const connectionDB =require ("./config/db.js")
 const apiRoutes = require("./routes/apiRoutes")
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(fileUpload())
 
 app.get('/', (req, res,next) => {
