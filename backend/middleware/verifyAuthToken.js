@@ -8,6 +8,8 @@ const verifyIsLoggedIn = (req,res,next)=>{
 
         try{
             const decoded= jwt.verify(token, process.env.JWT_SECRET_KEY)
+            req.user =decoded
+            next()
         }catch(error){
             res.status(401).send("unauthorized. Invalid Token")
         }
@@ -19,4 +21,12 @@ const verifyIsLoggedIn = (req,res,next)=>{
     }
 }
 
-module.exports= {verifyIsLoggedIn}
+const verifyIsAdmin = (req,res,next)=>{
+    if(req.user && req.user.isAdmin){
+        next()
+    }else{
+        return res.status(401).send("Unauthorized. admin required")
+    }
+}
+
+module.exports= {verifyIsLoggedIn, verifyIsAdmin}
