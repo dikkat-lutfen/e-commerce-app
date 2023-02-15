@@ -6,7 +6,7 @@ function FooterComponent() {
   <footer>
     <Container fluid>
       <Row className='mt-5'>
-        <Col className="text-light bg-dark text-center py-5"  >Copyright &copy ; By Muhammed Hakan</Col>
+        <Col className="text-light bg-dark text-center py-1"  >Copyright &copy ; By Muhammed Hakan</Col>
       </Row>
     </Container>
   </footer>
