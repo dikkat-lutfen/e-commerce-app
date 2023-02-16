@@ -4,8 +4,8 @@ import { Card, Button } from 'react-bootstrap'
 function CategoryCardComponent() {
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="images/laptop2.webp" />
+      <Card >
+      <Card.Img  className='cardImg' variant="top" src="images/laptop2.webp" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>

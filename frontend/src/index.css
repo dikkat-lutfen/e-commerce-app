@@ -16,6 +16,11 @@ footer {
   }
 
  .carouselImg{
-    height: 250px !important;
+    height: 250px ;
     align-items: center;
+}
+
+.cardImg {
+    height: 400px !important;
+    object-fit: cover;
 }
