@@ -5,7 +5,7 @@ import UserChatComponent from './UserChatComponent'
 function RoutesWithUserChatComponent() {
   return (
         <>
-        {/*  <UserChatComponent/> */}
+         <UserChatComponent/>
          <Outlet/>
         </>
       
