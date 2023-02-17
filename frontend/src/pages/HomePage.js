@@ -9,7 +9,7 @@ import {Row,Container} from "react-bootstrap"
     "Tablets","Games","Monitors","Printer","Software","Cameras","books","videos",
    ]
   return (
-    <div>
+    <div style={{marginBottom:"150px"}}>
       <ProductCarouselComponent/>
       <Container>
       <Row xs={1} md={2} className="g-4 mt-5">
