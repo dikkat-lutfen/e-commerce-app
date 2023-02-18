@@ -17,8 +17,13 @@ import {useEffect} from "react"
 function ProductDetailPage() {
 
   let options={
+
+    //width:400,
+    //zoomWidth:500,
+    //fillContainer:true,
+    //zoomPosition:"bottom",
       scale:2,
-      offset:{vertical:0, horizantal:0}
+      offset:{vertical:0, horizontal:0}
   }
 
   useEffect(()=>{

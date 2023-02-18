@@ -1,11 +1,18 @@
 import React from 'react'
+import { Container,Row,Col } from 'react-bootstrap'
 
-function UserOrdeDetailsPage() {
+function UserOrderDetailsPage() {
   return (
-    <div>
-      <h1>This is UserOrderDetailsPage</h1>
-    </div>
+   <Container fluid>
+     <Row className="mt-4">
+      <h1>Order Details</h1>,
+      <Col md={8}></Col>
+      <Col md={4}></Col>
+
+     </Row>
+
+   </Container>
   )
 }
 
-export default UserOrdeDetailsPage
+export default UserOrderDetailsPage
