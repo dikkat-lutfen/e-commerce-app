@@ -1,35 +1,80 @@
-import {Row,Col, Container,Image,ListGroup,Form,Button,Alert} from "react-bootstrap"
-import AddedToCartMessageComponent from "../components/AddedToCartMessageComponent"
-import {Rating} from "react-simple-star-rating"
+import {
+  Row,
+  Col,
+  Container,
+  Image,
+  ListGroup,
+  Form,
+  Button,
+  Alert,
+} from "react-bootstrap";
+import AddedToCartMessageComponent from "../components/AddedToCartMessageComponent";
+import { Rating } from "react-simple-star-rating";
+import ImageZoom from "js-image-zoom"
+import {useEffect} from "react"
 
 
 function ProductDetailPage() {
-  return(
-    <Container style={{marginBottom:"140px"}}>
-      <AddedToCartMessageComponent/>
+
+  let options={
+      scale:2,
+      offset:{vertical:0, horizantal:0}
+  }
+
+  useEffect(()=>{
+    new ImageZoom(document.getElementById("first"),options)
+    new ImageZoom(document.getElementById("second"),options)
+    new ImageZoom(document.getElementById("third"),options)
+    new ImageZoom(document.getElementById("fourth"),options)
+  },[])
+  return (
+    <Container style={{ marginBottom: "140px" }}>
+      <AddedToCartMessageComponent />
       <Row className="mt-5">
-    <Col md={4}>
-          <Image fluid src="/images/monitors-category.png" />
-          <Image fluid src="/images/monitor2-category.jpg" />
-          <Image fluid src="/images/monitors3-category.png" />
-          <Image fluid src="/images/software2-category.jpg" />
-    </Col>
-    <Col md={8}>
-        <Row>
+        <Col md={4} style={{zIndex:1}}>
+          <div id="first" >
+            <Image crossOrigin="anonymous" fluid src="/images/monitors-category.png" />
+          </div>
+          <br />
+          <div id="second">
+            <Image fluid src="/images/monitor2-category.jpg" />
+          </div>
+          <br />{" "}
+          <div id="third">
+            <Image fluid src="/images/monitors3-category.png" />
+          </div>
+          <br />
+          <div id="fourth">
+            <Image fluid src="/images/software2-category.jpg" />
+          </div>
+          <br />
+        </Col>
+        <Col md={8}>
+          <Row>
             <Col md={8}>
-            <ListGroup variant="flush">
-                <ListGroup.Item><h1>Product name</h1></ListGroup.Item>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h1>Product name</h1>
+                </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating readonly size={20} initialValue={4} /> (1)
                 </ListGroup.Item>
-                <ListGroup.Item>Price <span className="fw-bold">$345</span></ListGroup.Item>
-                <ListGroup.Item>Porta ac consectetur ac lorem impuslkabflkbakfbaKBQBJK  OIHFOWEAHNQWL IOHFOIBHSOEFIO UIHEFIOHIOEAHF JOHFOISHo jpoeropjero</ListGroup.Item>
+                <ListGroup.Item>
+                  Price <span className="fw-bold">$345</span>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Porta ac consectetur ac lorem impuslkabflkbakfbaKBQBJK
+                  OIHFOWEAHNQWL IOHFOIBHSOEFIO UIHEFIOHIOEAHF JOHFOISHo
+                  jpoeropjero
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col md={4}>
-            <ListGroup>
+              <ListGroup>
                 <ListGroup.Item>Status: in stock</ListGroup.Item>
-                <ListGroup.Item>Price : <span className="fw-bold">$345</span></ListGroup.Item>
+                <ListGroup.Item>
+                  Price : <span className="fw-bold">$345</span>
+                </ListGroup.Item>
                 <ListGroup.Item>
                   Quantity:
                   <Form.Select size="lg" aria-label="Default select example">
@@ -42,34 +87,34 @@ function ProductDetailPage() {
                 <ListGroup.Item>
                   <Button variant="danger">At to cart</Button>
                 </ListGroup.Item>
-                
               </ListGroup>
             </Col>
-        </Row>
-        <Row>
+          </Row>
+          <Row>
             <Col className="mt-5">
-            <h5>REVIEWS</h5>
+              <h5>REVIEWS</h5>
               <ListGroup variant="flush">
-                {Array.from({length:10}).map((item,idx)=>{
-                  return(
-                    <ListGroup.Item key={idx}>Halim <br/>
-                    <Rating readonly  size={20} initialValue={4}/>
-                    <br/>
-                    20.12.2023
-                    <br/>
+                {Array.from({ length: 10 }).map((item, idx) => {
+                  return (
+                    <ListGroup.Item key={idx}>
+                      Halim <br />
+                      <Rating readonly size={20} initialValue={4} />
+                      <br />
+                      20.12.2023
+                      <br />
+                      lkesfwehf jjpojwepojfpoew jhfpowjeopjfoewp opjepofjweop
+                      fjopeo poejfpowje powjefpojwpeo p 3opejrpowj şerr orjwej
+                      pojpojw epow
                     </ListGroup.Item>
-                  )
+                  );
                 })}
-                
-               
               </ListGroup>
             </Col>
-        </Row>
-        <hr/>
-        <Alert variant="danger">Login first to write a review</Alert>
-        <Form>
+          </Row>
+          <hr />
+          <Alert variant="danger">Login first to write a review</Alert>
+          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              
               <Form.Label>Write a review</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
@@ -81,15 +126,14 @@ function ProductDetailPage() {
               <option value="2">2 (bad) </option>
               <option value="1">4 (awful)</option>
             </Form.Select>
-            <Button className="mb-3 mt-3" variant="primary">Submit</Button>
+            <Button className="mb-3 mt-3" variant="primary">
+              Submit
+            </Button>
           </Form>
-    </Col>
-    </Row>
-
+        </Col>
+      </Row>
     </Container>
-    
-  )
-
+  );
 }
 
 export default ProductDetailPage;
