@@ -32,7 +32,7 @@ function CartPage() {
           Price: <span className='fw-bold'>$892</span>
         </ListGroupItem>
         <ListGroupItem>
-          <LinkContainer to="/user/order-details">
+          <LinkContainer to="/user/cart-details">
           <Button>Checkout</Button>
 
           </LinkContainer>
