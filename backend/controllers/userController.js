@@ -119,6 +119,31 @@ const updateUserProfile = async(req,res,next)=>{
   }
 }
 
+const getUserProfile = async (req,res,next)=>{
+  try{
+     const user = await User.findById(req.params.id).orFail()
+     return res.send(user)
+  }catch(error){
+    next(error)
+  }
+}
 
+const writeReview = async (req,res,next)=>{
+  try{
+    //get comment, rating from request body
+    const {comment, rating} = req.body
 
-module.exports = { getUsers, registerUser,loginUser, updateUserProfile};
+    // validate request
+
+    if(!(comment && rating)){
+      return res.status(400).send("All inputs are required")
+    }
+
+    
+
+  }catch(error){
+    next(error)
+  }
+}
+
+module.exports = { getUsers, registerUser,loginUser, updateUserProfile,getUserProfile,writeReview};
