@@ -1,74 +1,24 @@
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
-import { LinkContainer } from "react-router-bootstrap";
-import AdminLinksComponent from "../../components/admin/AdminLinksComponent";
+import ProductsPageComponent from "./components/ProductsPageComponent";
+import axios from "axios";
 
-function AdminProductsPage() {
 
-const deleteHandler=()=>{
-  if(window.confirm("Are you sure")) alert ("Product deleted")
+
+const fetchProducts =async (abctrl)=>{
+  const {data} = await axios.get("/api/products/admin", {
+     signal:abctrl.signal})
+     return data
 }
 
-  return (
-    <Container>
-      <Row className="m-5">
-        <Col md={2}>
-          <AdminLinksComponent />
-        </Col>
-        <Col md={10}>
-          <h1>
-            Product List{" "}
-            <LinkContainer to="/admin/create-new-product">
-              <Button variant="primary" size="lg">
-                create New
-              </Button>
-            </LinkContainer>
-          </h1>
-
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { name: "Panasonic", price: "$250", category: "TV" },
-                { name: "Lenovo", price: "$1000", category: "Laptop" },
-                { name: "GTA 10", price: "$345", category: "Games" },
-              ].map((item, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td>{idx + 1}</td>
-                    <td>{item.name}</td>
-                    <td>{item.price}</td>
-                    <td>{item.category}</td>
-                    <td>
-                      <LinkContainer to="/admin/edit-product">
-                          <Button className="btn-sm">
-                          <i className="bi bi-pencil-square"></i>
-                          </Button>
-                      </LinkContainer>
-                      {" / "}
-                      <Button variant="danger" className="btn-sm" onClick={deleteHandler}>
-                          <i className="bi bi-x-circle"></i>
-                          </Button>
-                    </td>
-                   
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-    </Container>
-  );
+const deleteProduct = async (productId)=>{
+  const {data}= await axios.delete(`/api/products/admin/${productId}`)
+  return data
 }
 
-export default AdminProductsPage;
+
+function AdminProductsPage (){
+  return(
+    <ProductsPageComponent fetchProducts={fetchProducts} deleteProduct={deleteProduct}/>
+  )
+}
+
+export default AdminProductsPage
