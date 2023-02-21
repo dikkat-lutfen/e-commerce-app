@@ -16,7 +16,7 @@ function CartPage() {
       {Array.from({length:3}).map((item,idx)=>{
         return(
           <div>
-            <CartItemComponent key={idx}/> <br/>
+            <CartItemComponent  item= {{image: {path: "/images/tablets-category.png"}, name: "product name" , price: 10, count: 10, quantity:10 }} key={idx}/> <br/>
           </div>
         )
       })}
