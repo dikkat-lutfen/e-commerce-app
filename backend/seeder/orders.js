@@ -1,37 +1,38 @@
 
 const ObjectId = require("mongodb").ObjectId
 
-  let hour;
-  let subtotal;
-const orders = Array.from({length: 22}).map((_,idx)=>{
-    let day= 20
-    if(idx<10){
-        let hour ="0" +idx
-        let subtotal = 100
-    }else if(idx>16 && idx<21) {
-        let hour= idx
-        subtotal=100+12*idx
-    }else{
-        let hour = idx
-        let subtotal=100
+const orders = Array.from({length: 22}).map((_, idx) => {
+    let day = 20
+    if(idx < 10) {
+        var hour = "0" + idx
+        var subtotal = 100
+    } else if(idx > 16 && idx < 21) {
+        var hour = idx
+        var subtotal = 100 + 12*idx
+    } else {
+        var hour = idx
+        var subtotal = 100
     }
     return {
-        user: ObjectId(),
-        OderTotal:{
-            itemsCount:3,
-            cartSubtotal:subtotal
-        }, 
-        cartItems : [ 
-          {  name: "Product name",
-             price: 34,
-             image: { path : "/images/tablets-category.png"},
-             quantity : 532,
-             count : 65
-        }
+        user:ObjectId(),
+        orderTotal: {
+            itemsCount: 3,
+            cartSubtotal: subtotal
+        },
+        cartItems: [
+            {
+                name: "Product name",
+                price: 34,
+                image: {path: "/images/tablets-category.png"},
+                quantity: 532,
+                count: 65
+            }
         ],
-        paymentMethods: "PayPal",
+        paymentMethod: "PayPal",
         isPaid: false,
         isDelivered: false,
-        createdAt: `2023-02-${day}T${hour}: 12:36.490+00:00`
+        createdAt: `2022-03-${day}T${hour}:12:36.490+00:00`
     }
 })
+
+module.exports = orders

@@ -1,71 +1,59 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 const Review = require("./ReviewModel")
-
-
-const imageSchema =new mongoose.Schema({
-    path: { type: String, required: true}
+const imageSchema = mongoose.Schema({
+    path: {type: String, required: true}
 })
 
-const productSchema = new mongoose.Schema({
+const productSchema = mongoose.Schema({
     name: {
         type: String,
-        required:true,
-        unique: true
-
+        required: true,
+        unique: true,
     },
-    description :{
+    description: {
         type: String,
-        required: true
-
+        required: true,
     },
-    
-    count:{
+    category: {
+        type: String,
+        required: true,
+    },
+    count: {
         type: Number,
-        required: true
+        required: true,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
-    category : {
-        type: String,
-        required: true
-    },
-    images: [imageSchema],
-    
     rating: {
         type: Number,
-    }, 
-    reviewsNumber :{
-        type: Number,
-
     },
+    reviewsNumber: {
+        type: Number,
+    },
+    sales: {
+        type: Number,
+        default: 0
+    },
+    attrs: [
+        {key: {type: String}, value: {type: String}}
+        // [{ key: "color", value: "red" }, { key: "size", value: "1 TB" }]
+    ],
+    images: [imageSchema],
     reviews: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: Review,
         }
-    ],
-   
-    attrs : [{key:{type: String}, value:{ type:String} }],
-    sales:{
-        type: Number,
-        default: 0,
-    },
-    
-    
-},{
-     timestamps:true,
+    ]
+}, {
+    timestamps: true,
 })
+const Product = mongoose.model("Product", productSchema)
 
-productSchema.index({name: "text", description : "text"}, {name: "TextIndex"});
-productSchema.index({"attrs.key":1,"attrs.value":1})
+productSchema.index({name: "text", description: "text"}, {name: "TextIndex"})
+productSchema.index({"attrs.key":1, "attrs.value":1})
+// productSchema.index({name: -1})
 
-const ProductModel = mongoose.model("products",productSchema)
-
-
-
-
-
-module.exports=ProductModel;
-
+module.exports = Product
