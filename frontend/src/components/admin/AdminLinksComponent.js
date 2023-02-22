@@ -1,8 +1,11 @@
 import React from "react";
 import {Nav,Navbar} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { logout } from "../../redux/actions/userActions";
+import { useDispatch } from "react-redux";
 
 function AdminLinksComponent() {
+    const dispatch= useDispatch()
   return (
     <div>
         <Navbar bg="light" variant="light">
@@ -22,7 +25,7 @@ function AdminLinksComponent() {
                 <LinkContainer to="/admin/analytics">
                     <Nav.Link >Analytics</Nav.Link>
                 </LinkContainer>
-                    <Nav.Link >Logout</Nav.Link>
+                    <Nav.Link onclick={()=>dispatch(logout)}>Logout</Nav.Link>
             </Nav>
         </Navbar>
       

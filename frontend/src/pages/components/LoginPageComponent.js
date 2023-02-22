@@ -1,33 +1,55 @@
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import Spinner from 'react-bootstrap/Spinner'
+import { Link, useNavigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
-
-const LoginPageComponent = ({loginUserApiREquest}) => {
+const LoginPageComponent = ({ loginUserApiRequest,reduxDispatch, setReduxUserState  }) => {
   const [validated, setValidated] = useState(false);
+  const [loginUserResponseState, setLoginUserResponseState] = useState({
+    success: "",
+    error: "",
+    loading: false,
+  });
 
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    const form = event.currentTarget.elements;
 
+    const email = form.email.value;
+    const password = form.password.value;
+    const doNotLogout = form.doNotLogout.checked;
 
-    const form = event.currentTarget.elements; // this read the values which in the form and individual vales (email,password,checkbox)
-    if (form.checkValidity() === false) {
-     
+    if (event.currentTarget.checkValidity() === true && email && password) {
+        setLoginUserResponseState({ loading: true });
+      loginUserApiRequest(email, password, doNotLogout)
+        .then((res) => {
+            setLoginUserResponseState({ success: res.success, loading: false, error: "" });
+
+            if (res.userLoggedIn) {
+                reduxDispatch(setReduxUserState(res.userLoggedIn));
+            }
+
+            if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.href = '/user'
+            else window.location.href = '/admin/orders'
+
+        })
+         .catch((er) =>
+          setLoginUserResponseState({ error: er.response.data.message ? er.response.data.message : er.response.data })
+        ); 
     }
 
     setValidated(true);
   };
+  
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={6}>
           <h1>Login</h1>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            
-            
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -56,23 +78,34 @@ const LoginPageComponent = ({loginUserApiREquest}) => {
 
             <Row className="pb-2">
               <Col>
-               Don't you have an account?
+                Don't you have an account?
                 <Link to={"/register"}> Register </Link>
               </Col>
             </Row>
 
             <Button variant="primary" type="submit">
-              <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
+              {loginUserResponseState &&
+              loginUserResponseState.loading === true ? (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                ""
+              )}
               Login
             </Button>
-            <Alert show={true} variant="danger">
-                Wrong credentials
+            <Alert
+              show={
+                loginUserResponseState &&
+                loginUserResponseState.error === "wrong credentials"
+              }
+              variant="danger"
+            >
+              Wrong credentials
             </Alert>
           </Form>
         </Col>
@@ -82,3 +115,4 @@ const LoginPageComponent = ({loginUserApiREquest}) => {
 };
 
 export default LoginPageComponent;
+

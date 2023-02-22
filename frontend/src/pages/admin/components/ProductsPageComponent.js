@@ -4,10 +4,12 @@ import Table from "react-bootstrap/Table";
 import { LinkContainer } from "react-router-bootstrap";
 import AdminLinksComponent from "../../../components/admin/AdminLinksComponent";
 import { useState,useEffect } from "react";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/actions/userActions";
 
 
 function ProductsPageComponent({fetchProducts, deleteProduct}) {
+  const dispatch = useDispatch()
 
   const [products,setProducts]= useState([])
   const [productDeleted,setProductDeleted]= useState(false)
@@ -28,7 +30,9 @@ const deleteHandler=async (productId)=>{
 useEffect(()=>{
  const abctrl  = new AbortController();
  fetchProducts(abctrl).then((res)=> setProducts(res)).catch((er)=>
- setProducts([ {name:er.response.data.message ? er.response.data.message : er.response.data}]))
+ dispatch(logout)
+ /* setProducts([ {name:er.response.data.message ? er.response.data.message : er.response.data}]) */
+ )
  return ()=> abctrl.abort()
 
 },[productDeleted])
