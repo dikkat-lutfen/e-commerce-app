@@ -8,49 +8,60 @@ import {
   Button,
   Alert,
 } from "react-bootstrap";
-import AddedToCartMessageComponent from "../components/AddedToCartMessageComponent";
 import { Rating } from "react-simple-star-rating";
-import ImageZoom from "js-image-zoom"
-import {useEffect} from "react"
+import AddedToCartMessageComponent from "../components/AddedToCartMessageComponent";
 
+import ImageZoom from "js-image-zoom";
+import { useEffect } from "react";
 
-function ProductDetailPage() {
+import { useDispatch ,useSelector} from "react-redux";
+import { addToCart } from "../redux/actions/cartActions";
 
-  let options={
+const ProductDetailsPage = () => {
+    const dispatch = useDispatch()
 
-    //width:400,
-    //zoomWidth:500,
-    //fillContainer:true,
-    //zoomPosition:"bottom",
-      scale:2,
-      offset:{vertical:0, horizontal:0}
-  }
+    const addToCartHandler = () => {
+        dispatch(addToCart());
+    }
+    const products = useSelector((state)=>state.cart.value)
 
-  useEffect(()=>{
-    new ImageZoom(document.getElementById("first"),options)
-    new ImageZoom(document.getElementById("second"),options)
-    new ImageZoom(document.getElementById("third"),options)
-    new ImageZoom(document.getElementById("fourth"),options)
-  },[])
+  var options = {
+    // width: 400,
+    // zoomWidth: 500,
+    // fillContainer: true,
+    // zoomPosition: "bottom",
+    scale: 2,
+    offset: { vertical: 0, horizontal: 0 },
+  };
+  useEffect(() => {
+    new ImageZoom(document.getElementById("first"), options);
+    new ImageZoom(document.getElementById("second"), options);
+    new ImageZoom(document.getElementById("third"), options);
+    new ImageZoom(document.getElementById("fourth"), options);
+  });
   return (
-    <Container style={{ marginBottom: "140px" }}>
+    <Container>
       <AddedToCartMessageComponent />
       <Row className="mt-5">
-        <Col md={4} style={{zIndex:1}}>
-          <div id="first" >
-            <Image crossOrigin="anonymous" fluid src="/images/monitors-category.png" />
+        <Col style={{ zIndex: 1 }} md={4}>
+          <div id="first">
+            <Image
+              crossOrigin="anonymous"
+              fluid
+              src="/images/games-category.png"
+            />
           </div>
           <br />
           <div id="second">
-            <Image fluid src="/images/monitor2-category.jpg" />
+            <Image fluid src="/images/monitors-category.png" />
           </div>
-          <br />{" "}
+          <br />
           <div id="third">
-            <Image fluid src="/images/monitors3-category.png" />
+            <Image fluid src="/images/tablets-category.png" />
           </div>
           <br />
           <div id="fourth">
-            <Image fluid src="/images/software2-category.jpg" />
+            <Image fluid src="/images/games-category.png" />
           </div>
           <br />
         </Col>
@@ -59,7 +70,7 @@ function ProductDetailPage() {
             <Col md={8}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h1>Product name</h1>
+                  <h1>Product name{products}</h1>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating readonly size={20} initialValue={4} /> (1)
@@ -68,9 +79,8 @@ function ProductDetailPage() {
                   Price <span className="fw-bold">$345</span>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Porta ac consectetur ac lorem impuslkabflkbakfbaKBQBJK
-                  OIHFOWEAHNQWL IOHFOIBHSOEFIO UIHEFIOHIOEAHF JOHFOISHo
-                  jpoeropjero
+                  Porta ac consectetur ac Lorem ipsum dolor, sit amet
+                  consectetur adipisicing elit. Perferendis, illo.
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -78,7 +88,7 @@ function ProductDetailPage() {
               <ListGroup>
                 <ListGroup.Item>Status: in stock</ListGroup.Item>
                 <ListGroup.Item>
-                  Price : <span className="fw-bold">$345</span>
+                  Price: <span className="fw-bold">$345</span>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   Quantity:
@@ -90,7 +100,7 @@ function ProductDetailPage() {
                   </Form.Select>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Button variant="danger">At to cart</Button>
+                  <Button onClick={addToCartHandler} variant="danger">Add to cart</Button>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -99,20 +109,16 @@ function ProductDetailPage() {
             <Col className="mt-5">
               <h5>REVIEWS</h5>
               <ListGroup variant="flush">
-                {Array.from({ length: 10 }).map((item, idx) => {
-                  return (
-                    <ListGroup.Item key={idx}>
-                      Halim <br />
-                      <Rating readonly size={20} initialValue={4} />
-                      <br />
-                      20.12.2023
-                      <br />
-                      lkesfwehf jjpojwepojfpoew jhfpowjeopjfoewp opjepofjweop
-                      fjopeo poejfpowje powjefpojwpeo p 3opejrpowj şerr orjwej
-                      pojpojw epow
-                    </ListGroup.Item>
-                  );
-                })}
+                {Array.from({ length: 10 }).map((item, idx) => (
+                  <ListGroup.Item key={idx}>
+                    John Doe <br />
+                    <Rating readonly size={20} initialValue={4} />
+                    <br />
+                    20-09-2001 <br />
+                    Porta ac consectetur ac Lorem ipsum dolor, sit amet
+                    consectetur adipisicing elit. Perferendis, illo.
+                  </ListGroup.Item>
+                ))}
               </ListGroup>
             </Col>
           </Row>
@@ -124,12 +130,12 @@ function ProductDetailPage() {
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
             <Form.Select aria-label="Default select example">
-              <option>Your rating 5</option>
-              <option value="5">5 (very good) </option>
+              <option>Your rating</option>
+              <option value="5">5 (very good)</option>
               <option value="4">4 (good)</option>
               <option value="3">3 (average)</option>
-              <option value="2">2 (bad) </option>
-              <option value="1">4 (awful)</option>
+              <option value="2">2 (bad)</option>
+              <option value="1">1 (awful)</option>
             </Form.Select>
             <Button className="mb-3 mt-3" variant="primary">
               Submit
@@ -139,6 +145,7 @@ function ProductDetailPage() {
       </Row>
     </Container>
   );
-}
+};
 
-export default ProductDetailPage;
+export default ProductDetailsPage;
+

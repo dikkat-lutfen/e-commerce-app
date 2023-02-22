@@ -11,7 +11,7 @@ function ProductCarouselComponent() {
       <Carousel>
       <Carousel.Item>
         <img
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
           className=" d-inline-block w-100 carouselImg"
           style={{height:"300px ",objectFit:"cover"}}
           src="/images/laptop1.jpeg"
