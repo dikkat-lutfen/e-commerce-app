@@ -1,52 +1,17 @@
-import React from 'react'
-import { Row, Col, Container, ListGroup, Button } from "react-bootstrap";
-import PaginationComponent from "../components/PaginationComponent";
-import ProductForListComponent from "../components/ProductForListComponent";
-import SortOptionsComponent from "../components/SortOptionsComponent";
-import PriceFilterComponent from "../components/filterQueryResultOptions/PriceFilterComponent";
-import RatingFilterComponent from "../components/filterQueryResultOptions/RatingFilterComponent";
-import CategoryFilterComponent from "../components/filterQueryResultOptions/CategoryFilterComponent";
-import AttributesFilterComponent from "../components/filterQueryResultOptions/AttributesFilterComponent";
-/* import axios from "axios"; */
+import ProductListPageComponent from './components/ProductListPageComponent';
+import axios from 'axios';
 
 
+const getProducts = async ()=>{
+  const {data} = await axios.get("/api/products")
+  return data
+}
 
 function ProductListPage() {
-/* axios.get("/api/products").then((res)=> console.log(res)) */
+
 
   return (
-    <Container fluid>
-    <Row>
-      <Col md={3}>
-        <ListGroup variant="flush">
-          <ListGroup.Item className="mb-3 mt-3"><SortOptionsComponent /></ListGroup.Item>
-          <ListGroup.Item>FILTER: <br />
-              <PriceFilterComponent /></ListGroup.Item>
-          <ListGroup.Item><RatingFilterComponent /></ListGroup.Item>
-          <ListGroup.Item><CategoryFilterComponent /></ListGroup.Item>
-          <ListGroup.Item>
-            <AttributesFilterComponent />
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Button variant="primary">Filter</Button>{" "}
-            <Button variant="danger">Reset filters</Button>
-          </ListGroup.Item>
-        </ListGroup>
-      </Col>
-      <Col md={9}>
-        {Array.from({length:5}).map((_,idx)=>{
-          return(
-            <ProductForListComponent key={idx}
-            images={["games2","monitor2","tablets2","software2","book2"]}
-            idx={idx} />
-          )
-        })}
-
-        
-        <PaginationComponent />
-      </Col>
-    </Row>
-  </Container>
+   <ProductListPageComponent getProducts={getProducts}/>
   )
 }
 
