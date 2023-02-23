@@ -14,11 +14,13 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import {logout} from "../redux/actions/userActions"
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+
 
 function HeaderComponent() {
 
   const dispatch = useDispatch()
+  const {userInfo} = useSelector((state)=>state.userRegisterLogin)
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container className="py-2">
@@ -42,49 +44,48 @@ function HeaderComponent() {
             </InputGroup>
           </Nav>
           <Nav>
-            <LinkContainer to="/admin/orders">
-              <Nav.Link>
-                Admin
-              {/*   <span className="position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle"></span> */}
-              </Nav.Link>
-            </LinkContainer>
 
-           
-             
-           
-            <NavDropdown title="Halim Boushada" id="collasible-nav-dropdown">
-              {/*  <NavDropdown.Item eventKey="/user/my-orders"  as={Link} to="/user/my-orders">My orders</NavDropdown.Item> */}
-
-              <NavDropdown.Item>
-                <Link
+          {userInfo.isAdmin ? (
+              <LinkContainer to="/admin/orders">
+                <Nav.Link>
+                  Admin
+                  <span className="position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
+                </Nav.Link>
+              </LinkContainer>
+            ) : userInfo.name && !userInfo.isAdmin ? (
+              <NavDropdown title={`${userInfo.name} ${userInfo.lastName}`} id="collasible-nav-dropdown">
+                <NavDropdown.Item
                   eventKey="/user/my-orders"
+                  as={Link}
                   to="/user/my-orders"
-                  className="text-decoration-none link-dark  "
                 >
                   My orders
-                </Link>
-              </NavDropdown.Item>
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey="/user" as={Link} to="/user">
+                  My profile
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => dispatch(logout())}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/register">
+                  <Nav.Link>Register</Nav.Link>
+                </LinkContainer>
+              </>
+            )}
+          
+           
+         
+             
+           
+          
 
-              <NavDropdown.Item>
-                <Link
-                  eventKey="/user"
-                  to="/user"
-                  className="text-decoration-none link-dark  "
-                >
-                  My Profile
-                </Link>
-              </NavDropdown.Item>
-
-              <NavDropdown.Item  onclick={()=>dispatch(logout())}>Logout</NavDropdown.Item>
-            </NavDropdown>
-
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-
-            <LinkContainer to="/register">
-              <Nav.Link>Register</Nav.Link>
-            </LinkContainer>
+           
 
             <LinkContainer to="/cart">
               <Nav.Link> 
