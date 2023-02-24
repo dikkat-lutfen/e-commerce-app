@@ -41,13 +41,13 @@ import ScrollToTop from "./utils/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop/>
+      <ScrollToTop />
       <HeaderComponent />
       <Routes>
         <Route element={<RoutesWithUserChatComponent />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/product-details" element={<ProductDetailPage />} />
+          
           <Route path="/product-details/:id" element={<ProductDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -55,25 +55,21 @@ function App() {
           <Route path="*" element="page not exist 404" />
         </Route>
 
-          {/* user protected routes */}
+        {/* user protected routes */}
 
-          <Route element={<ProtectedRoutesComponent admin={false} />}>
-            <Route path="/user" element={<UserProfilePage />} />
-            <Route path="/user/my-orders" element={<UserOrdersPage />} />
-            <Route
-              path="/user/cart-details"
-              element={<UserCartDetailsPage />}
-            />
-            <Route
-              path="/user/order-details"
-              element={<UserOrderDetailsPage />}
-            />
-          </Route>
-     
+        <Route element={<ProtectedRoutesComponent admin={false} />}>
+          <Route path="/user" element={<UserProfilePage />} />
+          <Route path="/user/my-orders" element={<UserOrdersPage />} />
+          <Route path="/user/cart-details" element={<UserCartDetailsPage />} />
+          <Route
+            path="/user/order-details"
+            element={<UserOrderDetailsPage />}
+          />
+        </Route>
 
         {/* admin protected routes */}
- 
-         <Route element={<ProtectedRoutesComponent admin={true} />}>
+
+        <Route element={<ProtectedRoutesComponent admin={true} />}>
           <Route path="/admin/users" element={<AdminUsersPage />} />
           <Route path="/admin/edit-user" element={<AdminEditUserPage />} />
           <Route path="/admin/products" element={<AdminProductsPage />} />

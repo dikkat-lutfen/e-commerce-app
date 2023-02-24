@@ -1,51 +1,49 @@
-import React from "react";
 import {
-  Container,
-  InputGroup,
-  Nav,
   Navbar,
+  Nav,
+  Container,
   NavDropdown,
   Badge,
   Form,
-  Dropdown,
   DropdownButton,
+  Dropdown,
   Button,
+  InputGroup,
 } from "react-bootstrap";
+
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
-import {logout} from "../redux/actions/userActions"
-import { useDispatch,useSelector } from "react-redux";
+import { logout } from "../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
+const HeaderComponent = () => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userRegisterLogin);
+    const itemsCount = useSelector((state) => state.cart.itemsCount);
 
-function HeaderComponent() {
-
-  const dispatch = useDispatch()
-  const {userInfo} = useSelector((state)=>state.userRegisterLogin)
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container className="py-2">
+      <Container>
         <LinkContainer to="/">
-          <Navbar.Brand href="/">HERE IS WHAT YOU NEED</Navbar.Brand>
+          <Navbar.Brand href="/">BEST ONLINE SHOP</Navbar.Brand>
         </LinkContainer>
-
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <InputGroup>
-              <DropdownButton id="dropdown-basic-button" title="All Categories">
-                <Dropdown.Item>Phones</Dropdown.Item>
-                <Dropdown.Item>Televisions</Dropdown.Item>
-                <Dropdown.Item>Computers</Dropdown.Item>
+              <DropdownButton id="dropdown-basic-button" title="All">
+                <Dropdown.Item>Electronics</Dropdown.Item>
+                <Dropdown.Item>Cars</Dropdown.Item>
+                <Dropdown.Item>Books</Dropdown.Item>
               </DropdownButton>
-              <Form.Control type="text" placeholder="Search item" />
-              <Button variant="primary">
-                <i className="bi bi-search"></i>
-              </Button>{" "}
+              <Form.Control type="text" placeholder="Search in shop ..." />
+              <Button variant="warning">
+                <i className="bi bi-search text-dark"></i>
+              </Button>
             </InputGroup>
           </Nav>
           <Nav>
-
-          {userInfo.isAdmin ? (
+            {userInfo.isAdmin ? (
               <LinkContainer to="/admin/orders">
                 <Nav.Link>
                   Admin
@@ -78,28 +76,22 @@ function HeaderComponent() {
                 </LinkContainer>
               </>
             )}
-          
-           
-         
-             
-           
-          
-
-           
 
             <LinkContainer to="/cart">
-              <Nav.Link> 
-                <Badge bg="danger">2</Badge> 
-                <i className="bi bi-cart-plus"></i>
-                 <span className="ms-1">CART</span>
+              <Nav.Link>
+                <Badge pill bg="danger">
+                  {itemsCount === 0 ? "" : itemsCount}
+                </Badge>
+                <i className="bi bi-cart-dash"></i>
+                <span className="ms-1">CART</span>
               </Nav.Link>
             </LinkContainer>
-
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default HeaderComponent;
+
