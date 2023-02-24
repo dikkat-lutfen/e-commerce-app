@@ -4,6 +4,7 @@ import CartItemComponent from "../../components/CartItemComponent";
 
 const CartPageComponent = ({
   addToCart,
+  removeFromCart,
   cartItems,
   cartSubtotal,
   reduxDispatch,
@@ -14,9 +15,7 @@ const CartPageComponent = ({
 
   const removeFromCartHandler = (productID, quantity, price) => {
      if (window.confirm("Are you sure?")) {
-         console.log(productID);
-         console.log(quantity);
-         console.log(price);
+         reduxDispatch(removeFromCart(productID, quantity, price));
      } 
   }
 
@@ -61,5 +60,4 @@ const CartPageComponent = ({
 };
 
 export default CartPageComponent;
-
 
