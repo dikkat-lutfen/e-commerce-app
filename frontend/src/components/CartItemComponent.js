@@ -1,7 +1,7 @@
 import { Row, Col, Image, ListGroup, Form, Button } from "react-bootstrap";
 import RemoveFromCartComponent from "./RemoveFromCartComponent";
 
-const CartItemComponent = ({ item, removeFromCartHandler = false, orderCreated = false, changeCount = false }) => {
+const CartItemComponent = ({ item, removeFromCartHandler = false, orderCreated = false, changeCount = false  }) => {
   return (
     <>
       <ListGroup.Item>
