@@ -39,7 +39,7 @@ useEffect(()=>{
 
   return (
 
-    <Container>
+    <Container style={{marginBottom:"150px"}}>
       <Row className="m-5">
         <Col md={2}>
           <AdminLinksComponent />
