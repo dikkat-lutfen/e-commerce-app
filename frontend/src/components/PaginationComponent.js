@@ -1,12 +1,11 @@
 import { Pagination } from "react-bootstrap";
 
-const PaginationComponent = () => {
+const PaginationComponent = ({ categoryName, searchQuery, paginationLinksNumber, pageNum }) => {
+    console.log(categoryName, paginationLinksNumber, pageNum);
   return (
-    <Pagination style={{marginBottom:"170px"}}>
-   
+    <Pagination>
       <Pagination.Prev />
       <Pagination.Item>{1}</Pagination.Item>
-    
 
       <Pagination.Item>{10}</Pagination.Item>
       <Pagination.Item>{11}</Pagination.Item>
@@ -16,7 +15,6 @@ const PaginationComponent = () => {
 
       <Pagination.Item>{20}</Pagination.Item>
       <Pagination.Next />
-      
     </Pagination>
   );
 };

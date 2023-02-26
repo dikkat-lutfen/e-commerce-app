@@ -1,25 +1,12 @@
-import React from 'react'
-import CategoryCardComponent from '../components/user/CategoryCardComponent';
-import ProductCarouselComponent from '../components/user/ProductCarouselComponent';
-import {Row,Container} from "react-bootstrap"
+import HomePageComponent from "./components/HomePageComponent";
+import { useSelector } from "react-redux";
 
+const HomePage = () => {
 
- function HomePage() {
-   const categories = [
-    "Tablets","Games","Monitors","Printer","Software","Cameras","books","videos",
-   ]
-  return (
-    <div style={{marginBottom:"150px"}}>
-      <ProductCarouselComponent/>
-      <Container>
-      <Row xs={1} md={2} className="g-4 mt-5">
-       {categories.map((category, idx)=>(<CategoryCardComponent  key={idx} category={category} idx={idx}/> )) }
-      </Row>
-      </Container>
-      
-     
-    </div>
-  )
-}
+    const { categories } = useSelector((state) => state.getCategories);
+
+  return <HomePageComponent categories={categories} />;
+};
 
 export default HomePage;
+
