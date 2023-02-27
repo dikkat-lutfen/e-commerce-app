@@ -331,7 +331,7 @@ const CreateProductPageComponent = ({
             </Row>
 
             <Alert show={newAttrKey && newAttrValue} variant="primary">
-              After typing attribute key and value press enterr on one of the
+              After typing attribute key and value press enter on one of the
               field
             </Alert>
 
@@ -358,4 +358,3 @@ const CreateProductPageComponent = ({
 };
 
 export default CreateProductPageComponent;
-

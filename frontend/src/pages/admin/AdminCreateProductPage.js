@@ -1,3 +1,5 @@
+
+
 import CreateProductPageComponent from "./components/CreateProductPageComponent";
 import axios from "axios";
 import {
@@ -32,4 +34,3 @@ const AdminCreateProductPage = () => {
 };
 
 export default AdminCreateProductPage;
-
