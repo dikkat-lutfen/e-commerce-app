@@ -15,8 +15,8 @@ const HomePageComponent = ({ categories }) => {
   return (
     <>
       <ProductCarouselComponent />
-      <Container>
-        <Row xs={1} md={2} className="g-4 mt-5">
+      <Container style={{marginBottom:"150px"}}>
+        <Row xs={1} md={2} className="g-4 mt-5 ">
           {mainCategories.map((category, idx) => (
             <CategoryCardComponent key={idx} category={category} idx={idx} />
           ))}
@@ -27,4 +27,3 @@ const HomePageComponent = ({ categories }) => {
 };
 
 export default HomePageComponent;
-

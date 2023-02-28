@@ -30,10 +30,11 @@ const LoginPageComponent = ({ loginUserApiRequest,reduxDispatch, setReduxUserSta
 
             if (res.userLoggedIn) {
                 reduxDispatch(setReduxUserState(res.userLoggedIn));
+           
             }
 
-            if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.href = '/user'
-            else window.location.href = '/admin/orders'
+            if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.href = '/'
+            else window.location.href = '/'
 
         })
          .catch((er) =>
@@ -68,13 +69,13 @@ const LoginPageComponent = ({ loginUserApiRequest,reduxDispatch, setReduxUserSta
                 placeholder="Password"
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+             <Form.Group className="mb-3" controlId="formBasicCheckbox"  hidden>
               <Form.Check
                 name="doNotLogout"
                 type="checkbox"
                 label="Do not logout"
               />
-            </Form.Group>
+            </Form.Group> 
 
             <Row className="pb-2">
               <Col>

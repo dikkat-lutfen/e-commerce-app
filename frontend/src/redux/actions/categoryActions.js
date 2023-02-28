@@ -20,9 +20,15 @@ export const saveAttributeToCatDoc = (key, val, categoryChoosen) => async (dispa
    }
 }
 
-export const newCategory = (category) => async (dispatch, getState) => {
+export const newCategory = (category,image) => async (dispatch, getState) => {
     const cat = getState().getCategories.categories;
-    const { data } = await axios.post("/api/categories", { category });
+    
+
+    console.log("category:"+category +" "+ image)
+    
+        const { data } = await axios.post("/api/categories/create", { category,image });
+    console.log("donen data: " + JSON.stringify(data))
+    console.log("image: " +  JSON.stringify(data.categoryCreated.image))
     if (data.categoryCreated) {
         dispatch({
             type: actionTypes.INSERT_CATEGORY,

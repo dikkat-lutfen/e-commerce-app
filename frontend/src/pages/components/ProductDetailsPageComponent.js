@@ -176,7 +176,7 @@ const ProductDetailsPageComponent = ({
                   </ListGroup>
                 </Col>
               </Row>
-              <Row>
+          {/*     <Row>
                 <Col className="mt-5">
                   <h5>REVIEWS</h5>
                   <ListGroup variant="flush">
@@ -217,7 +217,7 @@ const ProductDetailsPageComponent = ({
                   Submit
                 </Button>{" "}
                 {productReviewed}
-              </Form>
+              </Form> */}
             </Col>
           </>
         )}

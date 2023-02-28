@@ -17,6 +17,7 @@ const CreateProductPageComponent = ({
   createProductApiRequest,
   uploadImagesApiRequest,
   uploadImagesCloudinaryApiRequest,
+ 
   categories,
   reduxDispatch,
   newCategory,
@@ -36,6 +37,7 @@ const CreateProductPageComponent = ({
 
   const [newAttrKey, setNewAttrKey] = useState(false);
   const [newAttrValue, setNewAttrValue] = useState(false);
+ 
 
   const attrVal = useRef(null);
   const attrKey = useRef(null);
@@ -96,16 +98,26 @@ const CreateProductPageComponent = ({
   const uploadHandler = (images) => {
     setImages(images);
   };
+ 
+  console.log("99:"+images)
 
   const newCategoryHandler = (e) => {
     if (e.keyCode && e.keyCode === 13 && e.target.value) {
-      reduxDispatch(newCategory(e.target.value));
-      setTimeout(() => {
-        let element = document.getElementById("cats");
-        setCategoryChoosen(e.target.value);
-        element.value = e.target.value;
-        e.target.value = "";
-      }, 200);
+      
+      
+      
+        reduxDispatch(newCategory(e.target.value, "/images/"+images[0].name));
+        setTimeout(() => {
+          let element = document.getElementById("cats");
+          setCategoryChoosen(e.target.value);
+          element.value = e.target.value;
+          e.target.value = "";
+        
+        }, 200);
+
+      
+       
+   
     }
   };
 
@@ -230,6 +242,7 @@ const CreateProductPageComponent = ({
                 onKeyUp={newCategoryHandler}
                 name="newCategory"
                 type="text"
+               
               />
             </Form.Group>
 
@@ -357,4 +370,4 @@ const CreateProductPageComponent = ({
   );
 };
 
-export default CreateProductPageComponent;
+export default CreateProductPageComponent

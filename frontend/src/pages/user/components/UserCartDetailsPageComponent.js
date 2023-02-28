@@ -79,7 +79,7 @@ const UserCartDetailsPageComponent = ({cartItems, itemsCount, cartSubtotal, user
     }
 
   return (
-    <Container fluid>
+    <Container fluid  style={{marginBottom:"150px"}} >
       <Row className="mt-4">
         <h1>Cart Details</h1>
         <Col md={8}>

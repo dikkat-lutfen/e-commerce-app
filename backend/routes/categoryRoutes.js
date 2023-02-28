@@ -7,7 +7,7 @@ router.get("/", getCategories)
 
 router.use(verifyIsLoggedIn)
 router.use(verifyIsAdmin)
-router.post("/", newCategory)
+router.post("/create", newCategory)
 router.delete("/:category", deleteCategory)
 router.post("/attr", saveAttr)
 

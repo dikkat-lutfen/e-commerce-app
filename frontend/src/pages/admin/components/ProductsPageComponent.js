@@ -41,10 +41,9 @@ useEffect(()=>{
 
     <Container style={{marginBottom:"150px"}}>
       <Row className="m-5">
-        <Col md={2}>
-          <AdminLinksComponent />
-        </Col>
-        <Col md={10}>
+        
+     
+        <Col md={12}>
           <h1>
             Product List{" "}
             <LinkContainer to="/admin/create-new-product">
@@ -90,6 +89,7 @@ useEffect(()=>{
             </tbody>
           </Table>
         </Col>
+        
       </Row>
     </Container>
   );

@@ -1,10 +1,12 @@
 import { Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const CategoryCardComponent = ({ category, idx }) => {
+const CategoryCardComponent = ({ category, idx} ) => {
   
   return (
-    <Card>
+   <div>
+       <Card >
+
       <Card.Img crossOrigin="anonymous" variant="top" src={category.image ?? null} />
       <Card.Body>
         <Card.Title>{category.name}</Card.Title>
@@ -16,6 +18,7 @@ const CategoryCardComponent = ({ category, idx }) => {
         </LinkContainer>
       </Card.Body>
     </Card>
+   </div>
   );
 };
 

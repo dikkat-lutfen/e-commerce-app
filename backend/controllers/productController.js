@@ -159,6 +159,7 @@ const adminDeleteProduct = async (req, res, next) => {
 
 const adminCreateProduct = async (req, res, next) => {
   try {
+    console.log("categori olustu")
     const product = new Product();
     const { name, description, count, price, category, attributesTable } =
       req.body;

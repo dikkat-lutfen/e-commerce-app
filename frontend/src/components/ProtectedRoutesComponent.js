@@ -1,6 +1,6 @@
 import React from 'react'
 import {Outlet, Navigate} from "react-router-dom"
-import UserChatComponent from './user/UserChatComponent';
+
 import axios from "axios"
 import {useState,useEffect} from "react"
 import LoginPage from '../pages/LoginPage';
@@ -35,7 +35,7 @@ function ProtectedRouteComponent({admin}) {
     isAuth && !admin ?
     (
         <>
-            <UserChatComponent/>
+    
             <Outlet/>
         </>
     ) :

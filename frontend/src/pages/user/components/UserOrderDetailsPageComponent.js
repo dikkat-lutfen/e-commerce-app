@@ -93,7 +93,7 @@ const UserOrderDetailsPageComponent = ({
   }
 
   return (
-    <Container fluid>
+    <Container fluid style={{marginBottom:"150px"}}>
       <Row className="mt-4">
         <h1>Order Details</h1>
         <Col md={8}>

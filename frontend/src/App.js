@@ -5,7 +5,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
 
 //user components:
-import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent";
+import RoutesWithUserComponent from "./components/user/RoutesWithUserComponent";
 
 // publicly available pages:
 import HomePage from "./pages/HomePage";
@@ -31,8 +31,7 @@ import AdminCreateProductPage from "./pages/admin/AdminCreateProductPage";
 import AdminEditProductPage from "./pages/admin/AdminEditProductPage";
 import AdminOrdersPage from "./pages/admin/AdminOrdersPage";
 import AdminOrderDetailsPage from "./pages/admin/AdminOrderDetailsPage";
-import AdminChatsPage from "./pages/admin/AdminChatsPage";
-import AdminAnalyticsPage from "./pages/admin/AdminAnalyticsPage";
+
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
@@ -41,7 +40,7 @@ function App() {
     <ScrollToTop />
       <HeaderComponent />
       <Routes>
-        <Route element={<RoutesWithUserChatComponent />}>
+         <Route element={<RoutesWithUserComponent />}> 
           {/* publicly available routes: */}
           <Route path="/" element={<HomePage />} />
           <Route path="/product-list" element={<ProductListPage />} />
@@ -57,7 +56,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element="Page not exists 404" />
-        </Route>
+         </Route> 
         {/* <Route path="/" component={HomePage} />  in previous versions of react-router-dom */}
 
         {/* user protected routes: */}
@@ -89,8 +88,8 @@ function App() {
             path="/admin/order-details/:id"
             element={<AdminOrderDetailsPage />}
           />
-          <Route path="/admin/chats" element={<AdminChatsPage />} />
-          <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
+         
+          
         </Route>
       </Routes>
       <FooterComponent />

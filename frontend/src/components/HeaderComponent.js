@@ -40,10 +40,10 @@ const HeaderComponent = () => {
          if (searchCategoryToggle === "All") {
              navigate(`/product-list/search/${searchQuery}`);
          } else {
-             navigate(`/product-list/category/${searchCategoryToggle.replaceAll("/", ",")}/search/${searchQuery}`);
+             navigate(`/product-list/category/${searchCategoryToggle}/search/${searchQuery}`);
          }
      } else if (searchCategoryToggle !== "All") {
-         navigate(`/product-list/category/${searchCategoryToggle.replaceAll("/", ",")}`);
+         navigate(`/product-list/category/${searchCategoryToggle}`);
      } else {
          navigate("/product-list");
      }
@@ -73,12 +73,46 @@ const HeaderComponent = () => {
           </Nav>
           <Nav>
             {userInfo.isAdmin ? (
-              <LinkContainer to="/admin/orders">
-                <Nav.Link>
-                  Admin
-                  <span className="position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
-                </Nav.Link>
-              </LinkContainer>
+
+             
+         <NavDropdown
+                title={`${userInfo.name} ${userInfo.lastName} Admin`}
+                id="collasible-nav-dropdown-admin"
+              >
+                <NavDropdown.Item
+                  eventKey="/admin/orders"
+                  as={Link}
+                  to="/admin/orders"
+                >
+                 Orders
+                </NavDropdown.Item>
+
+                <NavDropdown.Item 
+                eventKey="/admin/products" 
+                as={Link} 
+                to="/admin/products">
+                 Product
+                </NavDropdown.Item>
+
+                <NavDropdown.Item
+                  eventKey="/admin/users"
+                  as={Link}
+                  to="/admin/users"
+                >
+                 Users
+                </NavDropdown.Item>
+
+                <NavDropdown.Item 
+                onClick={() => dispatch(logout())}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+
+
+
+            
+
+
             ) : userInfo.name && !userInfo.isAdmin ? (
               <NavDropdown
                 title={`${userInfo.name} ${userInfo.lastName}`}

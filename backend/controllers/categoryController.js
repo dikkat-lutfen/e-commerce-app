@@ -10,8 +10,11 @@ const getCategories = async (req, res, next) => {
 }
 
 const newCategory = async (req, res, next) => {
+    console.log("merhaba")
+    console.log(req.body)
     try {
-        const {category} = req.body
+        const {category,image} = req.body
+        
         if(!category) {
             res.status(400).send("Category input is required")
         }
@@ -20,7 +23,7 @@ const newCategory = async (req, res, next) => {
             res.status(400).send("Category already exists")
         } else {
             const categoryCreated = await Category.create({
-                name: category
+                name: category, image:image
             })
             res.status(201).send({categoryCreated: categoryCreated})
         }
