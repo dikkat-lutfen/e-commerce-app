@@ -55,8 +55,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element="Page not exists 404" />
-         </Route> 
+        </Route> 
         {/* <Route path="/" component={HomePage} />  in previous versions of react-router-dom */}
 
         {/* user protected routes: */}
@@ -75,19 +74,10 @@ function App() {
           <Route path="/admin/users" element={<AdminUsersPage />} />
           <Route path="/admin/edit-user/:id" element={<AdminEditUserPage />} />
           <Route path="/admin/products" element={<AdminProductsPage />} />
-          <Route
-            path="/admin/create-new-product"
-            element={<AdminCreateProductPage />}
-          />
-          <Route
-            path="/admin/edit-product/:id"
-            element={<AdminEditProductPage />}
-          />
+          <Route path="/admin/create-new-product" element={<AdminCreateProductPage />}          />
+          <Route path="/admin/edit-product/:id"element={<AdminEditProductPage />}          />
           <Route path="/admin/orders" element={<AdminOrdersPage />} />
-          <Route
-            path="/admin/order-details/:id"
-            element={<AdminOrderDetailsPage />}
-          />
+          <Route path="/admin/order-details/:id" element={<AdminOrderDetailsPage />}  />
          
           
         </Route>

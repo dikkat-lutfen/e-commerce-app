@@ -1,6 +1,6 @@
 import { Row, Col, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AdminLinksComponent from "../../../components/admin/AdminLinksComponent";
+/* import AdminLinksComponent from "../../../components/admin/AdminLinksComponent"; */
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

@@ -1,6 +1,6 @@
 import { Row, Col, Table, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import AdminLinksComponent from "../../../components/admin/AdminLinksComponent";
+/* import AdminLinksComponent from "../../../components/admin/AdminLinksComponent"; */
 
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ const UsersPageComponent = ({ fetchUsers ,deleteUser}) => {
   return (
     <Row className="m-5">
       <Col md={2}>
-        <AdminLinksComponent />
+       {/*  <AdminLinksComponent /> */}
       </Col>
       <Col md={10}>
         <h1>User List</h1>

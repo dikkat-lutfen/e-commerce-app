@@ -29,7 +29,7 @@ import {
 
 
 
-    useEffect (()=>{
+     useEffect (()=>{
         getOrder(id)
         .then((order)=> {
             setUserInfo(order.user)
@@ -47,7 +47,9 @@ import {
         dispatch(logout)
         /* .catch(er=> console.log( er.response.data.message ? er.response.data.message : er.response.data)) */
     
-    },[isDelivered,id])
+    },[]) 
+
+
     return (
       <Container fluid>
         <Row className="mt-4">

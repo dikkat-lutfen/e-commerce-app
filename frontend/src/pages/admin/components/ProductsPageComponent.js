@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { LinkContainer } from "react-router-bootstrap";
-import AdminLinksComponent from "../../../components/admin/AdminLinksComponent";
+/* import AdminLinksComponent from "../../../components/admin/AdminLinksComponent"; */
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/actions/userActions";
@@ -72,7 +72,7 @@ useEffect(()=>{
                     <td>{item.price}</td>
                     <td>{item.category}</td>
                     <td>
-                      <LinkContainer to={`/admin/edit-product/${item._id}`}  >
+                      <LinkContainer to={`/admin/editt-product/${item._id}`}  >
                           <Button className="btn-sm">
                           <i className="bi bi-pencil-square"></i>
                           </Button>

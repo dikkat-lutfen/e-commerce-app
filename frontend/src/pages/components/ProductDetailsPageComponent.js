@@ -16,6 +16,9 @@ import { useEffect, useState, useRef } from "react";
 
 import { useParams } from "react-router-dom";
 
+
+
+
 const ProductDetailsPageComponent = ({
   addToCartReduxAction,
   reduxDispatch,
@@ -30,6 +33,8 @@ const ProductDetailsPageComponent = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [productReviewed, setProductReviewed] = useState(false);
+  const [hover, setHover] = useState(true);
+  const [imgPath,setImgPath]=useState("")
 
   const messagesEndRef = useRef(null);
 
@@ -46,23 +51,9 @@ const ProductDetailsPageComponent = ({
     }  
   }, [productReviewed])
 
-  useEffect(() => {
-    if (product.images) {
-      var options = {
-        // width: 400,
-        // zoomWidth: 500,
-        // fillContainer: true,
-        // zoomPosition: "bottom",
-        scale: 2,
-        offset: { vertical: 0, horizontal: 0 },
-      };
 
-      product.images.map(
-        (image, id) =>
-          new ImageZoom(document.getElementById(`imageId${id + 1}`), options)
-      );
-    }
-  });
+
+ 
 
   useEffect(() => {
     getProductDetails(id)
@@ -108,25 +99,57 @@ const ProductDetailsPageComponent = ({
           <h2>{error}</h2>
         ) : (
           <>
-            <Col style={{ zIndex: 1 }} md={4}>
-              {product.images
-                ? product.images.map((image, id) => (
-                    <div key={id}>
-                      <div key={id} id={`imageId${id + 1}`}>
-                        <Image
-                          crossOrigin="anonymous"
-                          fluid
-                          src={`${image.path ?? null}`}
-                        />
-                      </div>
-                      <br />
-                    </div>
+           
+            <Col style={{ zIndex: 1 }} md={5}>
+              <Row>
+              <Col md={2}>
+               
+                {product.images
+                   ? product.images.map((image, id) => (
+                   
+                    <div key={id}>  
+                            
+                            <div key={id} id={`imageId${id + 1}`}>
+                              <Image
+                              onMouseEnter={()=>{
+                                setHover(false);
+                                setImgPath(`${image.path }`)
+                              }}
+                              onMouseLeave={()=>{
+                                setHover(true);
+                                setImgPath("")
+                              }}
+                             
+                              crossOrigin="anonymous" 
+                                fluid 
+                                src={`${image.path ?? null}`} 
+                            
+                              /> 
+                            </div>
+                            <br />   
+                      
+                          </div>
                   ))
                 : null}
+                     </Col>
+                     <Col md={10}>
+                      {console.log("imgPath: "+imgPath)}
+                       {      
+      
+                       imgPath ?  
+               
+      
+                          (<Image  src={imgPath}/>): ( <Image src={product.images[0].path}  style={{width:"350px"}} />)}  
+                     </Col>
+            
+              
+              </Row>
+
+           
             </Col>
-            <Col md={8}>
+            <Col md={7}>
               <Row>
-                <Col md={8}>
+                <Col md={7}>
                   <ListGroup variant="flush">
                     <ListGroup.Item>
                       <h1>{product.name}</h1>
@@ -176,48 +199,7 @@ const ProductDetailsPageComponent = ({
                   </ListGroup>
                 </Col>
               </Row>
-          {/*     <Row>
-                <Col className="mt-5">
-                  <h5>REVIEWS</h5>
-                  <ListGroup variant="flush">
-                    {product.reviews &&
-                      product.reviews.map((review, idx) => (
-                        <ListGroup.Item key={idx}>
-                          {review.user.name} <br />
-                          <Rating readonly size={20} initialValue={review.rating} />
-                          <br />
-                          {review.createdAt.substring(0, 10)} <br />
-                          {review.comment}
-                        </ListGroup.Item>
-                      ))}
-                      <div ref={messagesEndRef} />
-                  </ListGroup>
-                </Col>
-              </Row>
-              <hr />
-              {!userInfo.name && <Alert variant="danger">Login first to write a review</Alert>}
-              
-              <Form onSubmit={sendReviewHandler}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Write a review</Form.Label>
-                  <Form.Control name="comment" required as="textarea" disabled={!userInfo.name} rows={3} />
-                </Form.Group>
-                <Form.Select name="rating" required disabled={!userInfo.name} aria-label="Default select example">
-                  <option value="">Your rating</option>
-                  <option value="5">5 (very good)</option>
-                  <option value="4">4 (good)</option>
-                  <option value="3">3 (average)</option>
-                  <option value="2">2 (bad)</option>
-                  <option value="1">1 (awful)</option>
-                </Form.Select>
-                <Button disabled={!userInfo.name} type="submit" className="mb-3 mt-3" variant="primary">
-                  Submit
-                </Button>{" "}
-                {productReviewed}
-              </Form> */}
+         
             </Col>
           </>
         )}
