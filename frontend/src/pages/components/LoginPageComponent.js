@@ -20,7 +20,7 @@ const LoginPageComponent = ({ loginUserApiRequest,reduxDispatch, setReduxUserSta
 
     const email = form.email.value;
     const password = form.password.value;
-    /* const doNotLogout = form.doNotLogout.checked; */
+   
 
     if (event.currentTarget.checkValidity() === true && email && password) {
         setLoginUserResponseState({ loading: true });
@@ -69,14 +69,7 @@ const LoginPageComponent = ({ loginUserApiRequest,reduxDispatch, setReduxUserSta
                 placeholder="Password"
               />
              </Form.Group>
-             <Form.Group className="mb-3" controlId="formBasicCheckbox"  hidden>
-              <Form.Check
-                name="doNotLogout"
-                type="checkbox"
-                label="Do not logout"
-              />
-            </Form.Group>  
-
+  
             <Row className="pb-2">
               <Col>
                 Don't you have an account?

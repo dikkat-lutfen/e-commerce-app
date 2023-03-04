@@ -6,12 +6,12 @@ import {
   ListGroup,
   Form,
   Button,
-  Alert,
+
 } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 import AddedToCartMessageComponent from "../../components/AddedToCartMessageComponent";
 
-import ImageZoom from "js-image-zoom";
+
 import { useEffect, useState, useRef } from "react";
 
 import { useParams } from "react-router-dom";
@@ -23,8 +23,7 @@ const ProductDetailsPageComponent = ({
   addToCartReduxAction,
   reduxDispatch,
   getProductDetails,
-  userInfo,
-  writeReviewApiRequest
+ 
 }) => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
@@ -75,15 +74,7 @@ const ProductDetailsPageComponent = ({
          comment: form.comment.value,
          rating: form.rating.value,
      }
-     if (e.currentTarget.checkValidity() === true) {
-         writeReviewApiRequest(product._id, formInputs)
-         .then(data => {
-             if (data === "review created") {
-                 setProductReviewed("You successfuly reviewed the page!");
-             }
-         })
-         .catch((er) => setProductReviewed(er.response.data.message ? er.response.data.message : er.response.data));
-     }
+
   }
 
   return (

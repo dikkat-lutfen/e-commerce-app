@@ -72,7 +72,7 @@ useEffect(()=>{
                     <td>{item.price}</td>
                     <td>{item.category}</td>
                     <td>
-                      <LinkContainer to={`/admin/editt-product/${item._id}`}  >
+                      <LinkContainer to={`/admin/edit-product/${item._id}`}  >
                           <Button className="btn-sm">
                           <i className="bi bi-pencil-square"></i>
                           </Button>
