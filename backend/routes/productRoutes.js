@@ -8,7 +8,7 @@ router.get("/category/:categoryName/search/:searchQuery", getProducts)
 router.get("/category/:categoryName", getProducts)
 router.get("/search/:searchQuery", getProducts)
 router.get("/", getProducts)
-router.get("/bestsellers", getBestsellers)
+/* npm start */
 router.get("/get-one/:id", getProductById)
 
 // admin routes:

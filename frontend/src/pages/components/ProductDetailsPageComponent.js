@@ -6,24 +6,17 @@ import {
   ListGroup,
   Form,
   Button,
-
 } from "react-bootstrap";
-import { Rating } from "react-simple-star-rating";
 import AddedToCartMessageComponent from "../../components/AddedToCartMessageComponent";
-
 
 import { useEffect, useState, useRef } from "react";
 
 import { useParams } from "react-router-dom";
 
-
-
-
 const ProductDetailsPageComponent = ({
   addToCartReduxAction,
   reduxDispatch,
   getProductDetails,
- 
 }) => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
@@ -31,28 +24,18 @@ const ProductDetailsPageComponent = ({
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [productReviewed, setProductReviewed] = useState(false);
-  const [hover, setHover] = useState(true);
-  const [imgPath,setImgPath]=useState("")
+  
+  
+  const [imgPath, setImgPath] = useState("");
 
-  const messagesEndRef = useRef(null);
+ 
 
   const addToCartHandler = () => {
     reduxDispatch(addToCartReduxAction(id, quantity));
     setShowCartMessage(true);
   };
 
-  useEffect(() => {
-    if (productReviewed) {
-        setTimeout(() => {
-             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }, 200)
-    }  
-  }, [productReviewed])
 
-
-
- 
 
   useEffect(() => {
     getProductDetails(id)
@@ -65,20 +48,12 @@ const ProductDetailsPageComponent = ({
           er.response.data.message ? er.response.data.message : er.response.data
         )
       );
-  }, [id, productReviewed]);
+  }, [id]);
 
-  const sendReviewHandler = (e) => {
-     e.preventDefault();
-     const form = e.currentTarget.elements;
-     const formInputs = {
-         comment: form.comment.value,
-         rating: form.rating.value,
-     }
 
-  }
 
   return (
-    <Container style={{marginBottom:"150px"}}>
+    <Container style={{ marginBottom: "150px" }}>
       <AddedToCartMessageComponent
         showCartMessage={showCartMessage}
         setShowCartMessage={setShowCartMessage}
@@ -90,53 +65,44 @@ const ProductDetailsPageComponent = ({
           <h2>{error}</h2>
         ) : (
           <>
-           
             <Col style={{ zIndex: 1 }} md={5}>
               <Row>
-              <Col md={2}>
-               
-                {product.images
-                   ? product.images.map((image, id) => (
-                   
-                    <div key={id}>  
-                            
-                            <div key={id} id={`imageId${id + 1}`}>
-                              <Image
-                              onMouseEnter={()=>{
-                                setHover(false);
-                                setImgPath(`${image.path }`)
+                <Col md={2}>
+                  {product.images
+                    ? product.images.map((image, id) => (
+                        <div key={id}>
+                          <div key={id} id={`imageId${id + 1}`}>
+                            <Image
+                              onMouseEnter={() => {
+                               
+                                setImgPath(`${image.path}`);
                               }}
-                              onMouseLeave={()=>{
-                                setHover(true);
-                                setImgPath("")
+                              onMouseLeave={() => {
+                                
+                                setImgPath("");
                               }}
-                             
-                              crossOrigin="anonymous" 
-                                fluid 
-                                src={`${image.path ?? null}`} 
-                            
-                              /> 
-                            </div>
-                            <br />   
-                      
+                              crossOrigin="anonymous"
+                              fluid
+                              src={`${image.path ?? null}`}
+                            />
                           </div>
-                  ))
-                : null}
-                     </Col>
-                     <Col md={10}>
-                      {console.log("imgPath: "+imgPath)}
-                       {      
-      
-                       imgPath ?  
-               
-      
-                          (<Image  src={imgPath}/>): ( <Image src={product.images[0].path}  style={{width:"350px"}} />)}  
-                     </Col>
-            
+                          <br />
+                        </div>
+                      ))
+                    : null}
+                </Col>
+                <Col md={10}>
               
+                  {imgPath ? (
+                    <Image src={imgPath} />
+                  ) : (
+                    <Image
+                      src={product.images[0].path}
+                      style={{ width: "350px" }}
+                    />
+                  )}
+                </Col>
               </Row>
-
-           
             </Col>
             <Col md={7}>
               <Row>
@@ -145,14 +111,7 @@ const ProductDetailsPageComponent = ({
                     <ListGroup.Item>
                       <h1>{product.name}</h1>
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Rating
-                        readonly
-                        size={20}
-                        initialValue={product.rating}
-                      />{" "}
-                      ({product.reviewsNumber})
-                    </ListGroup.Item>
+                   
                     <ListGroup.Item>
                       Price <span className="fw-bold">${product.price}</span>
                     </ListGroup.Item>
@@ -190,7 +149,6 @@ const ProductDetailsPageComponent = ({
                   </ListGroup>
                 </Col>
               </Row>
-         
             </Col>
           </>
         )}
@@ -200,4 +158,3 @@ const ProductDetailsPageComponent = ({
 };
 
 export default ProductDetailsPageComponent;
-

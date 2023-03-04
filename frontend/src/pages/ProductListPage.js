@@ -2,13 +2,14 @@ import ProductListPageComponent from "./components/ProductListPageComponent";
 import axios from "axios";
 
 
-const getProducts = async (categoryName = "", pageNumParam = null, searchQuery = "") => {
+const getProducts = async (categoryName = "",  searchQuery = "") => {
    
     const search = searchQuery ? `search/${searchQuery}/` : "";
     const category = categoryName ? `category/${categoryName}/` : "";
-    const url = `/api/products/${category}${search}?pageNum=${pageNumParam}`;
+    const url = `/api/products/${category}${search}?`;
     const { data } = await axios.get(url);
-    return data
+        return data
+
 }
 
 const ProductListPage = () => {

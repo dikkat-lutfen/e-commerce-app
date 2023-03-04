@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Review = require("./ReviewModel")
+/* const Review = require("./ReviewModel") */
 const imageSchema = mongoose.Schema({
     path: {type: String, required: true}
 })
@@ -29,9 +29,9 @@ const productSchema = mongoose.Schema({
     rating: {
         type: Number,
     },
-    reviewsNumber: {
+   /*  reviewsNumber: {
         type: Number,
-    },
+    }, */
     sales: {
         type: Number,
         default: 0
@@ -41,12 +41,12 @@ const productSchema = mongoose.Schema({
         // [{ key: "color", value: "red" }, { key: "size", value: "1 TB" }]
     ],
     images: [imageSchema],
-    reviews: [
+/*     reviews: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: Review,
         }
-    ]
+    ] */
 }, {
     timestamps: true,
 })

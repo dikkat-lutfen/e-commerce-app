@@ -1,8 +1,8 @@
 import { Card, Button,Row,Col } from "react-bootstrap";
-import {Rating} from "react-simple-star-rating"
+
 import { LinkContainer } from "react-router-bootstrap";
 
-const ProductForListComponent = ({name,description, price,images,rating,reviewNumber,productId}) => {
+const ProductForListComponent = ({name,description, price,images,productId}) => {
   return (
     <Card style={{ marginTop:"30px", marginBottom:"50px" }}>
       <Row>
@@ -15,9 +15,7 @@ const ProductForListComponent = ({name,description, price,images,rating,reviewNu
         <Card.Text>
          {description}
         </Card.Text>
-        <Card.Text>
-          <Rating readonly size={20} initialValue={rating}>({reviewNumber})</Rating>
-        </Card.Text>
+   
         <Card.Text className="h4">
           ${price}{" "}
         </Card.Text>

@@ -1,5 +1,4 @@
-import { Row, Col, Container, ListGroup, Button } from "react-bootstrap";
-import PaginationComponent from "../../components/PaginationComponent";
+import { Row, Col, Container } from "react-bootstrap";
 import ProductForListComponent from "../../components/ProductForListComponent";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -8,28 +7,26 @@ const ProductListPageComponent = ({ getProducts}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [paginationLinksNumber, setPaginationLinksNumber] = useState(null);
-  const [pageNum, setPageNum] = useState(null);
+  const [total,setTotal]=useState(0)
   const { categoryName } = useParams() || "";
-  const { pageNumParam } = useParams() || 1;
+  
   const { searchQuery } = useParams() || "";
 
 
 
 
   useEffect(() => {
-    getProducts(categoryName, pageNumParam, searchQuery)
+    getProducts(categoryName,  searchQuery)
       .then((products) => {
         setProducts(products.products);
-        setPaginationLinksNumber(products.paginationLinksNumber);
-        setPageNum(products.pageNum);
+        setTotal(products.totalProducts)
         setLoading(false);
       })
       .catch((er) => {
         console.log(er);
         setError(true);
       });
-  }, [categoryName, pageNumParam, searchQuery]);
+  }, [categoryName,searchQuery]);
 
   
 
@@ -53,24 +50,16 @@ const ProductListPageComponent = ({ getProducts}) => {
                 name={product.name}
                 description={product.description}
                 price={product.price}
-                rating={product.rating}
-                reviewsNumber={product.reviewsNumber}
+               
                 productId={product._id}
               />
             ))
           )}
-          {paginationLinksNumber > 1 ? (
-            <PaginationComponent
-              categoryName={categoryName}
-              searchQuery={searchQuery}
-              paginationLinksNumber={paginationLinksNumber}
-              pageNum={pageNum}
-            />
-          ) : null}
+       
         </Col>
       </Row>
       <Col md={1}>
-
+             Total Product : {total}
         </Col>
     </Container>
   );

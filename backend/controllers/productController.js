@@ -1,13 +1,14 @@
 const Product = require("../models/ProductModel");
-const recordsPerPage = require("../config/pagination");
+
 const imageValidate = require("../utils/imageValidate");
 
 const getProducts = async (req, res, next) => {
+  
   try {
     let query = {};
     let queryCondition = false;
 
-    let priceQueryCondition = {};
+    /* let priceQueryCondition = {};
     if (req.query.price) {
       queryCondition = true;
       priceQueryCondition = { price: { $lte: Number(req.query.price) } };
@@ -16,7 +17,7 @@ const getProducts = async (req, res, next) => {
     if (req.query.rating) {
       queryCondition = true;
       ratingQueryCondition = { rating: { $in: req.query.rating.split(",") } };
-    }
+    } */
     let categoryQueryCondition = {};
     const categoryName = req.params.categoryName || "";
     if (categoryName) {
@@ -55,10 +56,6 @@ const getProducts = async (req, res, next) => {
       queryCondition = true;
     }
 
-    //pagination
-    const pageNum = Number(req.query.pageNum) || 1;
-
-    // sort by name, price etc.
     let sort = {};
     const sortOption = req.query.sort || "";
     if (sortOption) {
@@ -81,8 +78,8 @@ const getProducts = async (req, res, next) => {
     if (queryCondition) {
       query = {
         $and: [
-          priceQueryCondition,
-          ratingQueryCondition,
+         /*  priceQueryCondition,
+          ratingQueryCondition, */
           categoryQueryCondition,
           searchQueryCondition,
           ...attrsQueryCondition,
@@ -91,21 +88,23 @@ const getProducts = async (req, res, next) => {
     }
 
     const totalProducts = await Product.countDocuments(query);
+   /*  console.log("totalProduct:"+totalProducts) */
     const products = await Product.find(query)
       .select(select)
-      .skip(recordsPerPage * (pageNum - 1))
+/*       .skip(recordsPerPage * (pageNum - 1)) */
       .sort(sort)
-      .limit(recordsPerPage);
+     /*  .limit(recordsPerPage); */
 
     res.json({
       products,
-      pageNum,
-      paginationLinksNumber: Math.ceil(totalProducts / recordsPerPage),
+      totalProducts
+
     });
   } catch (error) {
     next(error);
   }
 };
+
 
 const getProductById = async (req, res, next) => {
   try {

@@ -7,7 +7,7 @@ const CategoryCardComponent = ({ category, idx} ) => {
    <div>
        <Card >
 
-      <Card.Img crossOrigin="anonymous" variant="top" src={category.image ?? null} />
+      <Card.Img /* crossOrigin="anonymous" */ variant="top" src={category.image ?? null} />
       <Card.Body>
         <Card.Title>{category.name}</Card.Title>
         <Card.Text>
