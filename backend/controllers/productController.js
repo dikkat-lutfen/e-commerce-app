@@ -8,16 +8,7 @@ const getProducts = async (req, res, next) => {
     let query = {};
     let queryCondition = false;
 
-    /* let priceQueryCondition = {};
-    if (req.query.price) {
-      queryCondition = true;
-      priceQueryCondition = { price: { $lte: Number(req.query.price) } };
-    }
-    let ratingQueryCondition = {};
-    if (req.query.rating) {
-      queryCondition = true;
-      ratingQueryCondition = { rating: { $in: req.query.rating.split(",") } };
-    } */
+
     let categoryQueryCondition = {};
     const categoryName = req.params.categoryName || "";
     if (categoryName) {
@@ -48,11 +39,11 @@ const getProducts = async (req, res, next) => {
             attrs: { $elemMatch: { key: a[0], value: { $in: values } } },
           };
           acc.push(a1);
-          // console.dir(acc, { depth: null })
+        
           return acc;
         } else return acc;
       }, []);
-      //   console.dir(attrsQueryCondition, { depth: null });
+     
       queryCondition = true;
     }
 
@@ -78,8 +69,7 @@ const getProducts = async (req, res, next) => {
     if (queryCondition) {
       query = {
         $and: [
-         /*  priceQueryCondition,
-          ratingQueryCondition, */
+       
           categoryQueryCondition,
           searchQueryCondition,
           ...attrsQueryCondition,
@@ -91,9 +81,8 @@ const getProducts = async (req, res, next) => {
    /*  console.log("totalProduct:"+totalProducts) */
     const products = await Product.find(query)
       .select(select)
-/*       .skip(recordsPerPage * (pageNum - 1)) */
       .sort(sort)
-     /*  .limit(recordsPerPage); */
+   
 
     res.json({
       products,
@@ -109,8 +98,7 @@ const getProducts = async (req, res, next) => {
 const getProductById = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate("reviews")
-      .orFail();
+       .orFail();
     res.json(product);
   } catch (err) {
     next(err);
@@ -142,7 +130,7 @@ const adminDeleteProduct = async (req, res, next) => {
 
 const adminCreateProduct = async (req, res, next) => {
   try {
-    console.log("categori olustu")
+    /* console.log("categori olustu") */
     const product = new Product();
     const { name, description, count, price, category, attributesTable } =
       req.body;

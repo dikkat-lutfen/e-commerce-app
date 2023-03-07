@@ -1,5 +1,5 @@
 import { Row, Col, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 
 const UserOrdersPageComponent = ({getOrders}) => {
@@ -13,7 +13,8 @@ const UserOrdersPageComponent = ({getOrders}) => {
 
   return (
     <Row className="m-5">
-      <Col md={12}>
+      <Col md={2}></Col>
+      <Col md={8}>
         <h1>My Orders</h1>
         <Table striped bordered hover>
           <thead>
@@ -23,7 +24,7 @@ const UserOrdersPageComponent = ({getOrders}) => {
               <th>Date</th>
               <th>Total</th>
               <th>Delivered</th>
-              <th>Order details</th>
+         
             </tr>
           </thead>
           <tbody>
@@ -37,15 +38,14 @@ const UserOrdersPageComponent = ({getOrders}) => {
                   <td>
                     {order.isDelivered ? <i className="bi bi-check-lg text-success"></i> : <i className="bi bi-x-lg text-danger"></i>}
                   </td>
-                  <td>
-                    <Link to={`/user/order-details/${order._id}`}>go to order</Link>
-                  </td>
+           
                 </tr>
               )
             )}
           </tbody>
         </Table>
       </Col>
+      <Col md={2}></Col>
     </Row>
   );
 };

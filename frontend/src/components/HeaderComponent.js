@@ -118,13 +118,13 @@ const HeaderComponent = () => {
                 title={`${userInfo.name} ${userInfo.lastName}`}
                 id="collasible-nav-dropdown"
               >
-               {/*  <NavDropdown.Item
+                 <NavDropdown.Item
                   eventKey="/user/my-orders"
                   as={Link}
                   to="/user/my-orders"
                 >
                   My orders
-                </NavDropdown.Item> */}
+                </NavDropdown.Item> 
                 <NavDropdown.Item eventKey="/user" as={Link} to="/user">
                   My profile
                 </NavDropdown.Item>
