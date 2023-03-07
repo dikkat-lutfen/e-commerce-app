@@ -11,13 +11,15 @@ const getProducts = async (req, res, next) => {
 
     let categoryQueryCondition = {};
     const categoryName = req.params.categoryName || "";
-    if (categoryName) {
+/*     if (categoryName) {
       queryCondition = true;
       let a = categoryName.replaceAll(",", "/");
-      var regEx = new RegExp("^" + a);
+      let regEx = new RegExp("^" + a);
       categoryQueryCondition = { category: regEx };
     }
-    if (req.query.category) {
+
+    */
+ /*    if (req.query.category) {
       queryCondition = true;
       let a = req.query.category.split(",").map((item) => {
         if (item) return new RegExp("^" + item);
@@ -25,7 +27,7 @@ const getProducts = async (req, res, next) => {
       categoryQueryCondition = {
         category: { $in: a },
       };
-    }
+    }  */
     let attrsQueryCondition = [];
     if (req.query.attrs) {
       // attrs=RAM-1TB-2TB-4TB,color-blue-red

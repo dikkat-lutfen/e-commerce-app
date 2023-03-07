@@ -7,10 +7,10 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import AddedToCartMessageComponent from "../../components/AddedToCartMessageComponent";
+
 
 import { useEffect, useState, useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const ProductDetailsPageComponent = ({
@@ -20,19 +20,22 @@ const ProductDetailsPageComponent = ({
 }) => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [showCartMessage, setShowCartMessage] = useState(false);
+
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   
   
   const [imgPath, setImgPath] = useState("");
+  const navigate = useNavigate();
 
  
 
   const addToCartHandler = () => {
     reduxDispatch(addToCartReduxAction(id, quantity));
-    setShowCartMessage(true);
+  /* 
+   */
+  navigate("/cart");
   };
 
 
@@ -54,10 +57,7 @@ const ProductDetailsPageComponent = ({
 
   return (
     <Container style={{ marginBottom: "150px" }}>
-      <AddedToCartMessageComponent
-        showCartMessage={showCartMessage}
-        setShowCartMessage={setShowCartMessage}
-      />
+
       <Row className="mt-5">
         {loading ? (
           <h2>Loading product details ...</h2>

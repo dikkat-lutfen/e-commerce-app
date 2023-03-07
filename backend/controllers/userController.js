@@ -29,6 +29,7 @@ const registerUser = async (req, res, next) => {
         email: email.toLowerCase(),
         password: hashedPassword,
       });
+      
       res
         .cookie(
           "access_token",
@@ -64,7 +65,7 @@ const registerUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-    const { email, password, doNotLogout } = req.body;
+    const { email, password } = req.body;
     if (!(email && password)) {
       return res.status(400).send("All inputs are required");
     }
@@ -77,9 +78,7 @@ const loginUser = async (req, res, next) => {
         sameSite: "strict",
       };
 
-      if (doNotLogout) {
-        cookieParams = { ...cookieParams, maxAge: 1000 * 60 * 60 * 24 * 7 }; // 1000=1ms
-      }
+  
 
       return res
         .cookie(
@@ -101,7 +100,7 @@ const loginUser = async (req, res, next) => {
             lastName: user.lastName,
             email: user.email,
             isAdmin: user.isAdmin,
-            doNotLogout,
+           
           },
         });
     } else {
