@@ -1,6 +1,5 @@
 import { Row, Col, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
-/* import AdminLinksComponent from "../../../components/admin/AdminLinksComponent"; */
+
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -16,17 +15,15 @@ const OrdersPageComponent = ({ getOrders }) => {
       .then((orders) => setOrders(orders))
       .catch((er) =>
       dispatch(logout)
-     /*    console.log(
-          er.response.data.message ? er.response.data.message : er.response.data
-        ) */
+   
       );
   }, []);
   
   return (
     <Row className="m-5" >
-      <Col md={1}></Col>
+      <Col md={2}></Col>
      
-      <Col md={10} style={{marginBottom:"150px"}} >
+      <Col md={8} style={{marginBottom:"150px"}} >
         <h1>Orders</h1>
         <Table striped bordered hover responsive>
           <thead>
@@ -37,7 +34,7 @@ const OrdersPageComponent = ({ getOrders }) => {
               <th>Total</th>
               <th>Delivered</th>
               <th>Payment Method</th>
-              <th>Order details</th>
+         
             </tr>
           </thead>
           <tbody>
@@ -61,17 +58,13 @@ const OrdersPageComponent = ({ getOrders }) => {
                   )}
                 </td>
                 <td>{order.paymentMethod}</td>
-                <td>
-                  <Link to={`/admin/order-details/${order._id}`}>
-                    go to order
-                  </Link>
-                </td>
+           
               </tr>
             ))}
           </tbody>
         </Table>
       </Col>
-      <Col md={1}></Col>
+      <Col md={2}></Col>
     </Row>
   );
 };
