@@ -11,13 +11,13 @@ const fetchUsers = async (abctrl) => {
 
 
 
-const deleteUser = async (userId)=>{
+/* const deleteUser = async (userId)=>{
   const {data}= await axios.delete(`/api/users/${userId}`)
   return data
-}
+} */
 function AdminUsersPage() {
 
- return <UsersPageComponent fetchUsers={fetchUsers} deleteUser={deleteUser}/>
+ return <UsersPageComponent fetchUsers={fetchUsers} /* deleteUser={deleteUser} *//>
  
 }
 

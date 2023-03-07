@@ -79,13 +79,13 @@ const HeaderComponent = () => {
                 title={`${userInfo.name} ${userInfo.lastName} Admin`}
                 id="collasible-nav-dropdown-admin"
               >
-             {/*    <NavDropdown.Item
+                 <NavDropdown.Item
                   eventKey="/admin/orders"
                   as={Link}
                   to="/admin/orders"
                 >
                  Orders
-                </NavDropdown.Item> */}
+                </NavDropdown.Item> 
 
                 <NavDropdown.Item 
                 eventKey="/admin/products" 
@@ -94,13 +94,13 @@ const HeaderComponent = () => {
                  Product
                 </NavDropdown.Item>
 
-               {/*  <NavDropdown.Item
+                 <NavDropdown.Item
                   eventKey="/admin/users"
                   as={Link}
                   to="/admin/users"
                 >
                  Users
-                </NavDropdown.Item> */}
+                </NavDropdown.Item> 
 
                 <NavDropdown.Item 
                 onClick={() => dispatch(logout())}>
