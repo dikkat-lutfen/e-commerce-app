@@ -60,7 +60,7 @@ const UserOrderDetailsPageComponent = ({
           setOrderButtonMessage("Your order is finished");
           setButtonDisabled(true);
         } else {
-          if (data.paymentMethod === "pp") {
+          if (data.paymentMethod === "PayPal") {
             setOrderButtonMessage("Pay for your order");
           } else if (data.paymentMethod === "cod") {
             setButtonDisabled(true);
@@ -73,7 +73,7 @@ const UserOrderDetailsPageComponent = ({
 
   const orderHandler = () => {
     setButtonDisabled(true);
-    if (paymentMethod === "pp") {
+    if (paymentMethod === "PayPal") {
       setOrderButtonMessage(
         "To pay for your order click one of the buttons below"
       );

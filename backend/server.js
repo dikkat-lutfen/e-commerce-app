@@ -13,19 +13,19 @@ app.use(helmet({
 }))
 
 const httpServer = createServer(app);
-global.io = new Server(httpServer);
+/* global.io = new Server(httpServer); */
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
 
-const admins = [];
+/* const admins = [];
 let activeChats = [];
 function get_random(array) {
    return array[Math.floor(Math.random() * array.length)]; 
-}
+} */
 
-io.on("connection", (socket) => {
+/* io.on("connection", (socket) => {
   socket.on("admin connected with server", (adminName) => {
     admins.push({ id: socket.id, admin: adminName });
   });
@@ -74,7 +74,7 @@ io.on("connection", (socket) => {
     }
     socket.broadcast.emit("disconnected", { reason: reason, socketId: socket.id });
   });
-});
+}); */
 
 const apiRoutes = require("./routes/apiRoutes");
 

@@ -18,7 +18,7 @@ const UserCartDetailsPageComponent = ({cartItems, itemsCount, cartSubtotal, user
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [userAddress, setUserAddress] = useState(false);
     const [missingAddress, setMissingAddress] = useState("");
-    const [paymentMethod, setPaymentMethod] = useState("pp");
+    const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
     const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const UserCartDetailsPageComponent = ({cartItems, itemsCount, cartSubtotal, user
             <Col md={6}>
               <h2>Payment method</h2>
               <Form.Select onChange={choosePayment}>
-                <option value="pp">PayPal</option>
+                <option value="PayPal">PayPal</option>
                 <option value="cod">
                   Cash On Delivery (delivery may be delayed)
                 </option>
